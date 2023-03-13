@@ -1,13 +1,13 @@
 import clsx from 'clsx'
 import { ButtonHTMLAttributes } from 'react'
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+type Props = {
   variant?: 'primary' | 'secondary'
   size?: 'sm' | 'md' | 'lg'
   icon: JSX.Element
-}
+} & ButtonHTMLAttributes<HTMLButtonElement>
 
-export const IconButton = ({ variant = 'primary', size = 'md', className, icon, ...props }: ButtonProps) => {
+export const IconButton = ({ variant = 'primary', size = 'md', className, icon, ...props }: Props) => {
   return (
     <div className={clsx(props.disabled && 'cursor-not-allowed')}>
       <button
