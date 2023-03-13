@@ -9,7 +9,7 @@ type Props = {
 
 export const IconButton = ({ variant = 'primary', size = 'md', className, icon, ...props }: Props) => {
   const styles = clsx(
-    'inline-flex items-center justify-center rounded-md border font-medium shadow-sm ring-offset-0 transition-colors duration-100 focus:ring-2 focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-60',
+    'inline-flex items-center justify-center rounded-md border font-medium shadow-sm outline-none transition-colors duration-100 focus:ring-2 disabled:pointer-events-none disabled:opacity-60 focus:ring-blue-500',
     variant === 'primary' && 'bg-gray-800 text-white hover:bg-gray-700 active:bg-gray-600',
     variant === 'secondary' && 'border border-gray-300 bg-white text-gray-900 hover:bg-gray-50 active:bg-gray-100',
     size === 'sm' && 'p-1',
