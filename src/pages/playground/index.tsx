@@ -2,6 +2,7 @@ import { Button } from '@/shared/ui/button'
 import { Checkbox } from '@/shared/ui/checkbox'
 import { IconButton } from '@/shared/ui/icon-button'
 import { Input } from '@/shared/ui/input'
+import { Switch } from '@/shared/ui/switch'
 import { ReactNode } from 'react'
 
 export default function Playground() {
@@ -147,11 +148,19 @@ export default function Playground() {
           />
         </div>
       </Block>
-      <Block>
+      <Block title="Checkboxes:">
         <div className="flex items-center gap-4">
           <Checkbox name="checkbox1" label="Label sm" size="sm" />
           <Checkbox name="checkbox2" label="Label md" defaultChecked />
           <Checkbox name="checkbox3" label="Label md" disabled defaultChecked />
+        </div>
+      </Block>
+      <Block title="Switches:">
+        <div className="flex items-center gap-4">
+          <Switch name="switch1" label="size sm" size="sm" />
+          <Switch name="switch2" label="size md" size="md" defaultChecked />
+          <Switch name="switch3" label="size sm" size="sm" disabled />
+          <Switch name="switch4" label="size md" size="md" defaultChecked disabled />
         </div>
       </Block>
     </div>
