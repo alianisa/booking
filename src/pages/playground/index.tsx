@@ -1,4 +1,5 @@
 import { Button } from '@/shared/ui/button'
+import { IconButton } from '@/shared/ui/icon-button'
 import { ReactNode } from 'react'
 
 export default function Playground() {
@@ -55,6 +56,12 @@ export default function Playground() {
             Primary
           </Button>
         </div>
+        <div className="flex items-center gap-4">
+          <IconButton icon={<SettingsIcon />} variant="secondary" size="sm" disabled />
+          <IconButton icon={<SettingsIcon />} variant="secondary" size="sm" />
+          <IconButton icon={<SettingsIcon />} variant="secondary" size="md" />
+          <IconButton icon={<SettingsIcon />} variant="secondary" size="lg" />
+        </div>
       </Block>
     </div>
   )
@@ -69,7 +76,7 @@ const Block = ({ title, children }: { title: string; children: ReactNode }) => {
   )
 }
 
-const SettingsIcon = () => {
+const SettingsIcon = (props: any) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -78,6 +85,7 @@ const SettingsIcon = () => {
       strokeWidth={1.5}
       stroke="currentColor"
       className="h-6 w-6"
+      {...props}
     >
       <path
         strokeLinecap="round"
