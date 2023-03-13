@@ -1,4 +1,5 @@
 import { Button } from '@/shared/ui/button'
+import { Checkbox } from '@/shared/ui/checkbox'
 import { IconButton } from '@/shared/ui/icon-button'
 import { Input } from '@/shared/ui/input'
 import { ReactNode } from 'react'
@@ -144,6 +145,13 @@ export default function Playground() {
             variant="filled"
             rightElement={<>test</>}
           />
+        </div>
+      </Block>
+      <Block>
+        <div className="flex items-center gap-4">
+          <Checkbox name="checkbox1" label="Label sm" size="sm" />
+          <Checkbox name="checkbox2" label="Label md" defaultChecked />
+          <Checkbox name="checkbox3" label="Label md" disabled defaultChecked />
         </div>
       </Block>
     </div>
