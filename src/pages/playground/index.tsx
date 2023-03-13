@@ -1,10 +1,11 @@
 import { Button } from '@/shared/ui/button'
 import { IconButton } from '@/shared/ui/icon-button'
+import { Input } from '@/shared/ui/input'
 import { ReactNode } from 'react'
 
 export default function Playground() {
   return (
-    <div className="mx-auto max-w-xl pt-20">
+    <div className="mx-auto flex max-w-7xl flex-col items-center pt-20">
       <Block title="Buttons:">
         <div className="flex items-center gap-4">
           <Button variant="primary" size="sm" disabled>
@@ -63,11 +64,81 @@ export default function Playground() {
           <IconButton icon={<SettingsIcon />} variant="secondary" size="lg" />
         </div>
       </Block>
+      <Block title="Inputs:">
+        <div className="flex items-center gap-4">
+          <Input size="sm" name="sm1" label="Label" placeholder="small size" error="This is an error message." />
+          <Input size="sm" name="sm2" label="Label" placeholder="small size" hint="This is a hint text to help user." />
+          <Input
+            size="sm"
+            name="sm3"
+            label="Label"
+            placeholder="small size"
+            hint="This is a hint text to help user."
+            disabled
+          />
+        </div>
+        <div className="flex items-center gap-4">
+          <Input name="md1" label="Label" placeholder="medium size" error="This is an error message." />
+          <Input name="md2" label="Label" placeholder="medium size" hint="This is a hint text to help user." />
+          <Input name="md3" label="Label" placeholder="medium size" hint="This is a hint text to help user." disabled />
+        </div>
+        <div className="flex items-center gap-4">
+          <Input
+            name="filled1"
+            label="Label"
+            placeholder="medium size"
+            error="This is an error message."
+            variant="filled"
+          />
+          <Input
+            name="filled2"
+            label="Label"
+            placeholder="medium size"
+            hint="This is a hint text to help user."
+            variant="filled"
+          />
+          <Input
+            name="filled3"
+            label="Label"
+            placeholder="medium size"
+            hint="This is a hint text to help user."
+            disabled
+            variant="filled"
+          />
+        </div>
+        <div className="flex items-center gap-4">
+          <Input
+            name="search1"
+            label="Label"
+            placeholder="leftElement"
+            error="This is an error message."
+            variant="filled"
+            leftElement={<SettingsIcon />}
+          />
+          <Input
+            name="search2"
+            label="Label"
+            placeholder="rightElement"
+            hint="This is a hint text to help user."
+            variant="filled"
+            rightElement={<SettingsIcon />}
+          />
+          <Input
+            name="search3"
+            label="Label"
+            placeholder="rightElement"
+            hint="This is a hint text to help user."
+            disabled
+            variant="filled"
+            rightElement={<>test</>}
+          />
+        </div>
+      </Block>
     </div>
   )
 }
 
-const Block = ({ title, children }: { title: string; children: ReactNode }) => {
+const Block = ({ title, children }: { title?: string; children: ReactNode }) => {
   return (
     <div className="flex flex-col gap-2 ">
       <h2 className="text-lg font-bold">{title}</h2>
