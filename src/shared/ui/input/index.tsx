@@ -8,7 +8,7 @@ type Props = {
   full?: boolean
   hint?: string
   variant?: 'outline' | 'filled'
-  size?: 'sm' | 'md'
+  size?: 'sm' | 'md' | 'lg'
   error?: string
   leftElement?: JSX.Element
   rightElement?: JSX.Element
@@ -38,8 +38,9 @@ export const Input = forwardRef(
       variant === 'filled' && 'border-gray-100 bg-gray-100 hover:bg-gray-200 focus:bg-white',
       props?.disabled && variant === 'outline' && 'hover:border-gray-300',
       props?.disabled && variant === 'filled' && 'hover:border-gray-100 hover:bg-gray-100',
-      size === 'sm' && 'py-2 px-3',
-      size === 'md' && 'py-[10px] px-[14px]',
+      size === 'sm' && 'py-1 px-2',
+      size === 'md' && 'py-2 px-3',
+      size === 'lg' && 'py-[10px] px-[14px]',
       error && '!border-red-500 hover:border-red-600 focus:border-red-500 focus:ring-red-500',
       leftElement && 'pl-10',
       rightElement && 'pr-10',

@@ -83,6 +83,18 @@ export default function Playground() {
           <Input name="md3" label="Label" placeholder="medium size" hint="This is a hint text to help user." disabled />
         </div>
         <div className="flex items-center gap-4">
+          <Input size="lg" name="lg1" label="Label" placeholder="large size" error="This is an error message." />
+          <Input size="lg" name="lg2" label="Label" placeholder="large size" hint="This is a hint text to help user." />
+          <Input
+            size="lg"
+            name="lg3"
+            label="Label"
+            placeholder="large size"
+            hint="This is a hint text to help user."
+            disabled
+          />
+        </div>
+        <div className="flex items-center gap-4">
           <Input
             name="filled1"
             label="Label"
