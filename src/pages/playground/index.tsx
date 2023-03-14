@@ -4,9 +4,13 @@ import { IconButton } from '@/shared/ui/icon-button'
 import { Input } from '@/shared/ui/input'
 import { Switch } from '@/shared/ui/switch'
 import { Textarea } from '@/shared/ui/textarea'
-import { ReactNode } from 'react'
+import { ToggleGroup } from '@/shared/ui/toggle-group'
+import { ReactNode, useState } from 'react'
 
 export default function Playground() {
+  const [toggleGroupValue, setToggleGroupValue] = useState('data2')
+  const [toggleGroupValue2, setToggleGroupValue2] = useState('date')
+  const [toggleGroupValue3, setToggleGroupValue3] = useState('variant1')
   return (
     <div className="mx-auto flex max-w-7xl flex-col items-center py-20">
       <Block title="Buttons:">
@@ -65,6 +69,42 @@ export default function Playground() {
           <IconButton icon={<SettingsIcon />} variant="secondary" size="sm" />
           <IconButton icon={<SettingsIcon />} variant="secondary" size="md" />
           <IconButton icon={<SettingsIcon />} variant="secondary" size="lg" />
+        </div>
+        <div className="flex items-center gap-4">
+          <ToggleGroup
+            value={toggleGroupValue}
+            data={[
+              { label: 'data1', value: 'data1' },
+              { label: 'data2', value: 'data2' },
+              { label: 'data3', value: 'data3' },
+            ]}
+            onChange={(value) => setToggleGroupValue(value)}
+          />
+          <ToggleGroup
+            value={toggleGroupValue2}
+            data={[
+              { label: 'Sort by date', value: 'date' },
+              { label: 'Sort by price', value: 'price' },
+            ]}
+            onChange={(value) => setToggleGroupValue2(value)}
+          />
+          <ToggleGroup
+            value={toggleGroupValue3}
+            data={[
+              { label: <SettingsIcon />, value: 'variant1' },
+              { label: <SettingsIcon />, value: 'variant2' },
+            ]}
+            onChange={(value) => setToggleGroupValue3(value)}
+          />
+          <ToggleGroup
+            variant="icon"
+            value={toggleGroupValue3}
+            data={[
+              { label: <SettingsIcon />, value: 'variant1' },
+              { label: <SettingsIcon />, value: 'variant2' },
+            ]}
+            onChange={(value) => setToggleGroupValue3(value)}
+          />
         </div>
       </Block>
       <Block title="Inputs:">
