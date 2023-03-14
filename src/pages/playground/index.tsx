@@ -3,11 +3,12 @@ import { Checkbox } from '@/shared/ui/checkbox'
 import { IconButton } from '@/shared/ui/icon-button'
 import { Input } from '@/shared/ui/input'
 import { Switch } from '@/shared/ui/switch'
+import { Textarea } from '@/shared/ui/textarea'
 import { ReactNode } from 'react'
 
 export default function Playground() {
   return (
-    <div className="mx-auto flex max-w-7xl flex-col items-center pt-20">
+    <div className="mx-auto flex max-w-7xl flex-col items-center py-20">
       <Block title="Buttons:">
         <div className="flex items-center gap-4">
           <Button variant="primary" size="sm" disabled>
@@ -161,6 +162,25 @@ export default function Playground() {
           <Switch name="switch2" label="size md" size="md" defaultChecked />
           <Switch name="switch3" label="size sm" size="sm" disabled />
           <Switch name="switch4" label="size md" size="md" defaultChecked disabled />
+        </div>
+      </Block>
+      <Block title="Textarea:">
+        <div className="flex items-center gap-4">
+          <Textarea name="textarea1" label="Label" placeholder="small size" error="This is an error message." />
+          <Textarea
+            variant="filled"
+            name="textarea2"
+            label="Label"
+            placeholder="medium size"
+            hint="This is a hint text to help user."
+          />
+          <Textarea
+            name="textarea3"
+            label="Label"
+            placeholder="large size"
+            hint="This is a hint text to help user."
+            disabled
+          />
         </div>
       </Block>
     </div>

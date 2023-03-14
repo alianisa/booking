@@ -60,7 +60,7 @@ export const Input = forwardRef(
               {leftElement}
             </div>
           )}
-          <input {...props} ref={ref as any} id={name} name={name} className={styles} />
+          <input {...props} ref={ref as any} id={name} name={name} className={styles} type={type} />
           {rightElement && (
             <div className="pointer-events-none absolute top-1/2 right-3 -translate-y-1/2 text-gray-500">
               {rightElement}
