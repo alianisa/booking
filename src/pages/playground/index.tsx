@@ -2,6 +2,7 @@ import { Button } from '@/shared/ui/button'
 import { Checkbox } from '@/shared/ui/checkbox'
 import { IconButton } from '@/shared/ui/icon-button'
 import { Input } from '@/shared/ui/input'
+import { Select } from '@/shared/ui/select'
 import { Switch } from '@/shared/ui/switch'
 import { Textarea } from '@/shared/ui/textarea'
 import { ToggleGroup } from '@/shared/ui/toggle-group'
@@ -11,6 +12,11 @@ export default function Playground() {
   const [toggleGroupValue, setToggleGroupValue] = useState('data2')
   const [toggleGroupValue2, setToggleGroupValue2] = useState('date')
   const [toggleGroupValue3, setToggleGroupValue3] = useState('variant1')
+  const selectOptions = [
+    { label: 'value1', value: 'value1' },
+    { label: 'value2', value: 'value2' },
+    { label: 'value3', value: 'value3' },
+  ]
   return (
     <div className="mx-auto flex max-w-7xl flex-col items-center py-20">
       <Block title="Buttons:">
@@ -206,7 +212,7 @@ export default function Playground() {
       </Block>
       <Block title="Textarea:">
         <div className="flex items-center gap-4">
-          <Textarea name="textarea1" label="Label" placeholder="small size" error="This is an error message." />
+          <Textarea name="textarea1" label="Label" placeholder="medium size" error="This is an error message." />
           <Textarea
             variant="filled"
             name="textarea2"
@@ -217,9 +223,92 @@ export default function Playground() {
           <Textarea
             name="textarea3"
             label="Label"
+            placeholder="medium size"
+            hint="This is a hint text to help user."
+            disabled
+          />
+        </div>
+      </Block>
+      <Block title="Select:">
+        <div className="flex items-center gap-4">
+          <Select
+            size="sm"
+            name="select1"
+            label="Label"
+            placeholder="small size"
+            error="This is an error message."
+            options={selectOptions}
+          />
+          <Select
+            size="sm"
+            variant="filled"
+            name="select2"
+            label="Label"
+            placeholder="small size"
+            hint="This is a hint text to help user."
+            options={selectOptions}
+          />
+          <Select
+            size="sm"
+            name="select3"
+            label="Label"
+            placeholder="small size"
+            hint="This is a hint text to help user."
+            disabled
+            options={selectOptions}
+          />
+        </div>
+        <div className="flex items-center gap-4">
+          <Select
+            name="select1"
+            label="Label"
+            placeholder="medium size"
+            error="This is an error message."
+            options={selectOptions}
+          />
+          <Select
+            variant="filled"
+            name="select2"
+            label="Label"
+            placeholder="medium size"
+            hint="This is a hint text to help user."
+            options={selectOptions}
+          />
+          <Select
+            name="select3"
+            label="Label"
+            placeholder="medium size"
+            hint="This is a hint text to help user."
+            disabled
+            options={selectOptions}
+          />
+        </div>
+        <div className="flex items-center gap-4">
+          <Select
+            size="lg"
+            name="select1"
+            label="Label"
+            placeholder="large size"
+            error="This is an error message."
+            options={selectOptions}
+          />
+          <Select
+            size="lg"
+            variant="filled"
+            name="select2"
+            label="Label"
+            placeholder="large size"
+            hint="This is a hint text to help user."
+            options={selectOptions}
+          />
+          <Select
+            size="lg"
+            name="select3"
+            label="Label"
             placeholder="large size"
             hint="This is a hint text to help user."
             disabled
+            options={selectOptions}
           />
         </div>
       </Block>
