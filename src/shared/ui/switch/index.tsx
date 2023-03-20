@@ -25,8 +25,8 @@ export const Switch = ({ name, label, size = 'md', className, ...props }: Props)
   )
 
   const thumbStyles = clsx(
-    'block rounded-full bg-white transition-transform duration-200 will-change-transform data-[state=checked]:translate-x-[22px]',
-    size === 'sm' && 'h-4 w-4  translate-x-0.5 data-[state=checked]:translate-x-[18px]',
+    'block rounded-full bg-white transition-transform duration-200 will-change-transform',
+    size === 'sm' && 'h-4 w-4  translate-x-0.5 data-[state=checked]:translate-x-[17px]',
     size === 'md' && 'h-5 w-5  translate-x-0.5 data-[state=checked]:translate-x-[22px]',
     props?.disabled && 'opacity-60 pointer-events-none'
   )
