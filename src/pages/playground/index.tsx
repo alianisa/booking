@@ -8,6 +8,15 @@ import { Textarea } from 'shared/ui/textarea'
 import { ToggleGroup } from 'shared/ui/toggle-group'
 import { ReactNode, useState } from 'react'
 import { Cog6ToothIcon } from '@heroicons/react/24/outline'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from 'shared/ui/dialog'
 
 export default function Playground() {
   const [toggleGroupValue, setToggleGroupValue] = useState('data2')
@@ -312,6 +321,26 @@ export default function Playground() {
             options={selectOptions}
           />
         </div>
+        <Block title="Dialog:">
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button variant="secondary">Edit Profile</Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[425px]">
+              <DialogHeader>
+                <DialogTitle>Edit profile</DialogTitle>
+                <DialogDescription>Make changes to your profile here. Click save when youre done.</DialogDescription>
+              </DialogHeader>
+              <div className="grid gap-4">
+                <Input name="name" value="Pedro Duarte" className="col-span-3" label="Name" />
+                <Input name="username" value="@peduarte" className="col-span-3" label="Username" />
+              </div>
+              <DialogFooter>
+                <Button type="submit">Save changes</Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
+        </Block>
       </Block>
     </div>
   )
