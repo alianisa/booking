@@ -1,5 +1,5 @@
+import { SelectHTMLAttributes, forwardRef } from 'react'
 import clsx from 'clsx'
-import { forwardRef, SelectHTMLAttributes } from 'react'
 import { cn } from 'shared/lib/utils'
 
 type Props = {
