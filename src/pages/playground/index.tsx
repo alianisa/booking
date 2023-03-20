@@ -17,6 +17,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from 'shared/ui/dialog'
+import { Popover, PopoverContent, PopoverTrigger } from 'shared/ui/popover'
 
 export default function Playground() {
   const [toggleGroupValue, setToggleGroupValue] = useState('data2')
@@ -321,26 +322,47 @@ export default function Playground() {
             options={selectOptions}
           />
         </div>
-        <Block title="Dialog:">
-          <Dialog>
-            <DialogTrigger asChild>
-              <Button variant="secondary">Edit Profile</Button>
-            </DialogTrigger>
-            <DialogContent className="sm:max-w-[425px]">
-              <DialogHeader>
-                <DialogTitle>Edit profile</DialogTitle>
-                <DialogDescription>Make changes to your profile here. Click save when youre done.</DialogDescription>
-              </DialogHeader>
-              <div className="grid gap-4">
-                <Input name="name" value="Pedro Duarte" className="col-span-3" label="Name" />
-                <Input name="username" value="@peduarte" className="col-span-3" label="Username" />
+      </Block>
+      <Block title="Dialog:">
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button variant="secondary">Edit Profile</Button>
+          </DialogTrigger>
+          <DialogContent className="sm:max-w-[425px]">
+            <DialogHeader>
+              <DialogTitle>Edit profile</DialogTitle>
+              <DialogDescription>Make changes to your profile here. Click save when youre done.</DialogDescription>
+            </DialogHeader>
+            <div className="grid gap-4">
+              <Input name="name" value="Pedro Duarte" className="col-span-3" label="Name" />
+              <Input name="username" value="@peduarte" className="col-span-3" label="Username" />
+            </div>
+            <DialogFooter>
+              <Button type="submit">Save changes</Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
+      </Block>
+      <Block title="Popover:">
+        <Popover>
+          <PopoverTrigger asChild>
+            <Button variant="secondary">Open</Button>
+          </PopoverTrigger>
+          <PopoverContent className="w-80">
+            <div className="grid gap-4">
+              <div className="space-y-2">
+                <h4 className="font-medium leading-none">Dimensions</h4>
+                <p className="text-sm text-slate-500 dark:text-slate-400">Set the dimensions for the layer.</p>
               </div>
-              <DialogFooter>
-                <Button type="submit">Save changes</Button>
-              </DialogFooter>
-            </DialogContent>
-          </Dialog>
-        </Block>
+              <div className="grid gap-2">
+                <Input name="width" defaultValue="100%" />
+                <Input name="maxWidth" defaultValue="300px" />
+                <Input name="height" defaultValue="25px" />
+                <Input name="maxHeight" defaultValue="none" />
+              </div>
+            </div>
+          </PopoverContent>
+        </Popover>
       </Block>
     </div>
   )
