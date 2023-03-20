@@ -334,8 +334,8 @@ export default function Playground() {
               <DialogDescription>Make changes to your profile here. Click save when youre done.</DialogDescription>
             </DialogHeader>
             <div className="grid gap-4">
-              <Input name="name" value="Pedro Duarte" className="col-span-3" label="Name" />
-              <Input name="username" value="@peduarte" className="col-span-3" label="Username" />
+              <Input name="name" value="Pedro Duarte" label="Name" />
+              <Input name="username" value="@peduarte" label="Username" />
             </div>
             <DialogFooter>
               <Button type="submit">Save changes</Button>
@@ -352,7 +352,7 @@ export default function Playground() {
             <div className="grid gap-4">
               <div className="space-y-2">
                 <h4 className="font-medium leading-none">Dimensions</h4>
-                <p className="text-sm text-slate-500 dark:text-slate-400">Set the dimensions for the layer.</p>
+                <p className="text-sm text-slate-500">Set the dimensions for the layer.</p>
               </div>
               <div className="grid gap-2">
                 <Input name="width" defaultValue="100%" />
