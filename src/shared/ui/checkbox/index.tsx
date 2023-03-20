@@ -1,5 +1,6 @@
 import { InputHTMLAttributes } from 'react'
 import clsx from 'clsx'
+import { cn } from 'shared/lib/utils'
 
 type Props = {
   name: string
@@ -20,7 +21,7 @@ export const Checkbox = ({ name, label, size = 'md', className, ...props }: Prop
     props?.disabled && '!cursor-not-allowed opacity-60'
   )
   return (
-    <div className={clsx('flex items-center', props?.disabled && 'cursor-not-allowed', className)}>
+    <div className={cn('flex items-center', props?.disabled && 'cursor-not-allowed', className)}>
       <input {...props} name={name} id={name} type="checkbox" className={inputStyles} />
       {label && (
         <label htmlFor={name} className={labelStyles}>

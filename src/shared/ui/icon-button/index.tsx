@@ -1,5 +1,6 @@
 import clsx from 'clsx'
 import { ButtonHTMLAttributes } from 'react'
+import { cn } from 'shared/lib/utils'
 
 type Props = {
   variant?: 'primary' | 'secondary'
@@ -8,7 +9,7 @@ type Props = {
 } & ButtonHTMLAttributes<HTMLButtonElement>
 
 export const IconButton = ({ variant = 'primary', size = 'md', className, icon, ...props }: Props) => {
-  const styles = clsx(
+  const styles = cn(
     'inline-flex items-center justify-center rounded-md border font-medium shadow-sm outline-none transition-colors duration-100 focus:ring-2 disabled:pointer-events-none disabled:opacity-60 focus:ring-blue-500',
     variant === 'primary' &&
       'bg-gray-800 text-white hover:bg-gray-700 active:bg-gray-600 border-gray-800 hover:border-gray-700',

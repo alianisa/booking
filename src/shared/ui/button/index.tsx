@@ -1,5 +1,6 @@
 import clsx from 'clsx'
 import { ButtonHTMLAttributes, forwardRef } from 'react'
+import { cn } from 'shared/lib/utils'
 
 type Props = {
   variant?: 'primary' | 'secondary'
@@ -12,7 +13,7 @@ type Props = {
 
 export const Button = forwardRef<HTMLButtonElement, Props>(
   ({ variant = 'primary', size = 'md', full, leftIcon, rightIcon, className, children, ...props }, ref) => {
-    const styles = clsx(
+    const styles = cn(
       'inline-flex items-center justify-center rounded-md border font-medium shadow-sm transition-colors duration-100 focus:ring-2 disabled:pointer-events-none disabled:opacity-60 focus:ring-blue-500 outline-none',
       variant === 'primary' &&
         'bg-gray-800 border-gray-800 text-white hover:bg-gray-700 hover:border-gray-700 active:bg-gray-600',

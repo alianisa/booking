@@ -1,5 +1,6 @@
 import * as RadixSwitch from '@radix-ui/react-switch'
 import clsx from 'clsx'
+import { cn } from 'shared/lib/utils'
 
 type Props = {
   name: string
@@ -32,7 +33,7 @@ export const Switch = ({ name, label, size = 'md', className, ...props }: Props)
 
   return (
     <form>
-      <div className={clsx('flex items-center', props.disabled && 'cursor-not-allowed', className)}>
+      <div className={cn('flex items-center', props.disabled && 'cursor-not-allowed', className)}>
         {label && (
           <label className={labelStyles} htmlFor={name}>
             {label}

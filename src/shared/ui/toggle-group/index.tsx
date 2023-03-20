@@ -1,5 +1,6 @@
 import clsx from 'clsx'
 import React from 'react'
+import { cn } from 'shared/lib/utils'
 import { Button } from '../button'
 import { IconButton } from '../icon-button'
 
@@ -26,7 +27,7 @@ export const ToggleGroup = ({
   }
 
   return (
-    <div className={clsx('flex', className)} {...props}>
+    <div className={cn('flex', className)} {...props}>
       {data.map((item, index) => {
         if (variant === 'text')
           return (

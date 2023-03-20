@@ -1,5 +1,6 @@
 import clsx from 'clsx'
 import { forwardRef, InputHTMLAttributes } from 'react'
+import { cn } from 'shared/lib/utils'
 
 type Props = {
   name: string
@@ -32,7 +33,7 @@ export const Input = forwardRef(
     }: Props,
     ref
   ) => {
-    const styles = clsx(
+    const styles = cn(
       'block w-full rounded-md border text-gray-900 placeholder-gray-500 shadow-sm outline-none transition-all duration-100 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 disabled:cursor-not-allowed',
       variant === 'outline' && 'border-gray-300 bg-white text-base hover:border-gray-400',
       variant === 'filled' && 'border-gray-100 bg-gray-100 hover:bg-gray-200 focus:bg-white',
