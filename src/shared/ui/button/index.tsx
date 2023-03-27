@@ -7,12 +7,10 @@ type Props = {
   size?: 'sm' | 'md' | 'lg'
   children: React.ReactNode
   full?: boolean
-  leftIcon?: JSX.Element
-  rightIcon?: JSX.Element
 } & ButtonHTMLAttributes<HTMLButtonElement>
 
 export const Button = forwardRef<HTMLButtonElement, Props>(
-  ({ variant = 'primary', size = 'md', full, leftIcon, rightIcon, className, children, ...props }, ref) => {
+  ({ variant = 'primary', size = 'md', full, className, children, ...props }, ref) => {
     const styles = cn(
       'inline-flex items-center justify-center rounded-md border font-medium shadow-sm transition-colors duration-100 focus:ring-2 disabled:pointer-events-none disabled:opacity-60 focus:ring-blue-500 outline-none',
       variant === 'primary' &&
@@ -28,9 +26,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>(
     return (
       <div className={clsx(props.disabled && 'cursor-not-allowed')}>
         <button {...props} className={styles} ref={ref}>
-          {leftIcon && <span className="mr-2">{leftIcon}</span>}
           {children}
-          {rightIcon && <span className="ml-2">{rightIcon}</span>}
         </button>
       </div>
     )

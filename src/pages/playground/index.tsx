@@ -1,5 +1,7 @@
 import { ReactNode, useState } from 'react'
 import { Cog6ToothIcon } from '@heroicons/react/24/outline'
+import { cn } from 'shared/lib/utils'
+import { SearchList } from 'widgets/search-list'
 import { Button } from 'shared/ui/button'
 import { Checkbox } from 'shared/ui/checkbox'
 import {
@@ -18,6 +20,7 @@ import { Select } from 'shared/ui/select'
 import { Switch } from 'shared/ui/switch'
 import { Textarea } from 'shared/ui/textarea'
 import { ToggleGroup } from 'shared/ui/toggle-group'
+import { searchListMock } from './mocks'
 
 export default function Playground() {
   const [toggleGroupValue, setToggleGroupValue] = useState('data2')
@@ -28,6 +31,7 @@ export default function Playground() {
     { label: 'value2', value: 'value2' },
     { label: 'value3', value: 'value3' },
   ]
+  const [listLoading, setListLoading] = useState(true)
   return (
     <div className="mx-auto flex max-w-7xl flex-col items-center py-20">
       <Block title="Buttons:">
@@ -51,34 +55,6 @@ export default function Playground() {
           </Button>
           <Button variant="secondary" size="lg">
             Secondary
-          </Button>
-        </div>
-        <div className="flex items-center gap-4">
-          <Button leftIcon={<Cog6ToothIcon className="h-6 w-6" />} variant="primary" size="sm" disabled>
-            Disabled
-          </Button>
-          <Button leftIcon={<Cog6ToothIcon className="h-6 w-6" />} size="sm">
-            Primary
-          </Button>
-          <Button leftIcon={<Cog6ToothIcon className="h-6 w-6" />} size="md">
-            Primary
-          </Button>
-          <Button leftIcon={<Cog6ToothIcon className="h-6 w-6" />} size="lg">
-            Primary
-          </Button>
-        </div>
-        <div className="flex items-center gap-4">
-          <Button rightIcon={<Cog6ToothIcon className="h-6 w-6" />} variant="secondary" size="sm" disabled>
-            Disabled
-          </Button>
-          <Button variant="secondary" rightIcon={<Cog6ToothIcon className="h-6 w-6" />} size="sm">
-            Primary
-          </Button>
-          <Button variant="secondary" rightIcon={<Cog6ToothIcon className="h-6 w-6" />} size="md">
-            Primary
-          </Button>
-          <Button variant="secondary" rightIcon={<Cog6ToothIcon className="h-6 w-6" />} size="lg">
-            Primary
           </Button>
         </div>
         <div className="flex items-center gap-4">
@@ -364,13 +340,25 @@ export default function Playground() {
           </PopoverContent>
         </Popover>
       </Block>
+      <Block title="SearchList:">
+        <Button onClick={() => setListLoading((loading) => !loading)}>{String(listLoading)}</Button>
+        <SearchList
+          items={searchListMock}
+          nights={2}
+          loading={listLoading}
+          fetchNextPage={console.log}
+          fetchPreviousPage={console.log}
+          hasNextPage={true}
+          hasPreviousPage={false}
+        />
+      </Block>
     </div>
   )
 }
 
-const Block = ({ title, children }: { title?: string; children: ReactNode }) => {
+const Block = ({ title, children, className }: { title?: string; children: ReactNode; className?: string }) => {
   return (
-    <div className="flex flex-col gap-2 ">
+    <div className={cn('flex w-full flex-col gap-2 px-4', className)}>
       <h2 className="text-lg font-bold">{title}</h2>
       {children}
     </div>
