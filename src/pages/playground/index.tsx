@@ -31,7 +31,7 @@ export default function Playground() {
     { label: 'value2', value: 'value2' },
     { label: 'value3', value: 'value3' },
   ]
-  const [listLoading, setListLoading] = useState(true)
+  const [listLoading, setListLoading] = useState(false)
   return (
     <div className="mx-auto flex max-w-7xl flex-col items-center py-20">
       <Block title="Buttons:">
