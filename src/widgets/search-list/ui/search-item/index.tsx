@@ -14,16 +14,16 @@ export const SearchItem = ({ item, nights, variant }: Props) => {
     <div
       key={item.name}
       className={cn(
-        'flex w-full cursor-pointer flex-col rounded-md border border-gray-300 shadow-sm transition-all duration-100 hover:border-gray-400 hover:shadow-md md:flex-row md:p-4',
-        variant === 'grid' && 'md:flex-col md:p-0'
+        'flex w-full cursor-pointer flex-col rounded-md border border-gray-300 shadow-sm transition-all duration-100 hover:border-gray-400 hover:shadow-md md:flex-row md:gap-4 md:p-4',
+        variant === 'grid' && 'gap-0 md:flex-col md:gap-0 md:p-0'
       )}
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={item.images[0]}
         className={cn(
-          'h-auto w-full  rounded-md object-cover md:mr-4 md:h-40 md:w-40',
-          variant === 'grid' && 'md:h-auto md:w-full'
+          'h-auto w-full rounded-tl-md rounded-tr-md object-cover md:h-40 md:w-40 md:rounded-md',
+          variant === 'grid' && '!rounded-bl-none !rounded-br-none md:h-auto md:w-full'
         )}
         alt="hotel image"
       />
