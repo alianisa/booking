@@ -3,7 +3,7 @@ import { ChevronLeftIcon, ChevronRightIcon, ListBulletIcon, Squares2X2Icon } fro
 import { cn } from 'shared/lib/utils'
 import { Button } from 'shared/ui/button'
 import { ToggleGroup } from 'shared/ui/toggle-group'
-import { SearchItem, Skeleton } from './ui/search-item'
+import { ItemSkeleton, SearchItem } from './ui'
 
 export type Item = {
   name: string
@@ -70,7 +70,7 @@ export const SearchList = ({
           items.map((item, index) => (
             <SearchItem item={item} nights={nights} key={item.name + index} loading={loading} variant={variant} />
           ))}
-        {loading && Array.from(Array(10)).map((item, index) => <Skeleton key={index} variant={variant} />)}
+        {loading && Array.from(Array(10)).map((item, index) => <ItemSkeleton key={index} variant={variant} />)}
       </div>
       <div className="flex w-full justify-between gap-4">
         <Button variant="secondary" disabled={!hasPreviousPage || loading} onClick={fetchPreviousPage}>
