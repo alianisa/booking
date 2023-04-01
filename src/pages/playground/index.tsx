@@ -4,6 +4,7 @@ import { cn } from 'shared/lib/utils'
 import { SearchList } from 'widgets/search-list'
 import { Button } from 'shared/ui/button'
 import { Checkbox } from 'shared/ui/checkbox'
+import { DateRangePicker, Dates, NullableDate } from 'shared/ui/date-range-picker'
 import {
   Dialog,
   DialogContent,
@@ -32,6 +33,13 @@ export default function Playground() {
     { label: 'value3', value: 'value3' },
   ]
   const [listLoading, setListLoading] = useState(false)
+  const [startDate, setStartDate] = useState<NullableDate>(null)
+  const [endDate, setEndDate] = useState<NullableDate>(null)
+  const onChange = (dates: Dates) => {
+    const [start, end] = dates
+    setStartDate(start)
+    setEndDate(end)
+  }
   return (
     <div className="mx-auto flex max-w-7xl flex-col items-center py-20">
       <Block title="Buttons:">
@@ -351,6 +359,9 @@ export default function Playground() {
           hasNextPage={true}
           hasPreviousPage={false}
         />
+      </Block>
+      <Block title="RangePicker:">
+        <DateRangePicker startDate={startDate} endDate={endDate} onChange={onChange} />
       </Block>
     </div>
   )
