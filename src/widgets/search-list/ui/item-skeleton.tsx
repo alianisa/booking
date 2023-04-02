@@ -8,7 +8,7 @@ export const ItemSkeleton = ({ variant }: Props) => {
   return (
     <div
       className={cn(
-        'flex w-full cursor-pointer flex-col rounded-md border border-gray-300 shadow-sm transition-all duration-100 hover:border-gray-400 hover:shadow-md md:flex-row md:p-4',
+        'flex w-full cursor-pointer flex-col rounded-md border border-gray-300 shadow-sm transition-all hover:border-gray-400 hover:shadow-md md:flex-row md:p-4',
         variant === 'grid' && 'md:flex-col md:p-0'
       )}
     >

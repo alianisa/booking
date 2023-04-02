@@ -41,7 +41,7 @@ export default function Playground() {
     setEndDate(end)
   }
   return (
-    <div className="mx-auto flex max-w-7xl flex-col items-center py-20">
+    <div className="mx-auto flex max-w-7xl flex-col items-center py-10">
       <Block title="Buttons:">
         <div className="flex items-center gap-4">
           <Button variant="primary" size="sm" disabled>
@@ -49,7 +49,6 @@ export default function Playground() {
           </Button>
           <Button size="sm">Primary</Button>
           <Button size="md">Primary</Button>
-          <Button size="lg">Primary</Button>
         </div>
         <div className="flex items-center gap-4">
           <Button variant="secondary" size="sm" disabled>
@@ -61,15 +60,11 @@ export default function Playground() {
           <Button variant="secondary" size="md">
             Secondary
           </Button>
-          <Button variant="secondary" size="lg">
-            Secondary
-          </Button>
         </div>
         <div className="flex items-center gap-4">
           <IconButton icon={<Cog6ToothIcon className="h-6 w-6" />} variant="secondary" size="sm" disabled />
           <IconButton icon={<Cog6ToothIcon className="h-6 w-6" />} variant="secondary" size="sm" />
           <IconButton icon={<Cog6ToothIcon className="h-6 w-6" />} variant="secondary" size="md" />
-          <IconButton icon={<Cog6ToothIcon className="h-6 w-6" />} variant="secondary" size="lg" />
         </div>
         <div className="flex items-center gap-4">
           <ToggleGroup
@@ -125,18 +120,6 @@ export default function Playground() {
           <Input name="md1" label="Label" placeholder="medium size" error="This is an error message." />
           <Input name="md2" label="Label" placeholder="medium size" hint="This is a hint text to help user." />
           <Input name="md3" label="Label" placeholder="medium size" hint="This is a hint text to help user." disabled />
-        </div>
-        <div className="flex items-center gap-4">
-          <Input size="lg" name="lg1" label="Label" placeholder="large size" error="This is an error message." />
-          <Input size="lg" name="lg2" label="Label" placeholder="large size" hint="This is a hint text to help user." />
-          <Input
-            size="lg"
-            name="lg3"
-            label="Label"
-            placeholder="large size"
-            hint="This is a hint text to help user."
-            disabled
-          />
         </div>
         <div className="flex items-center gap-4">
           <Input
@@ -273,34 +256,6 @@ export default function Playground() {
             name="select3"
             label="Label"
             placeholder="medium size"
-            hint="This is a hint text to help user."
-            disabled
-            options={selectOptions}
-          />
-        </div>
-        <div className="flex items-center gap-4">
-          <Select
-            size="lg"
-            name="select1"
-            label="Label"
-            placeholder="large size"
-            error="This is an error message."
-            options={selectOptions}
-          />
-          <Select
-            size="lg"
-            variant="filled"
-            name="select2"
-            label="Label"
-            placeholder="large size"
-            hint="This is a hint text to help user."
-            options={selectOptions}
-          />
-          <Select
-            size="lg"
-            name="select3"
-            label="Label"
-            placeholder="large size"
             hint="This is a hint text to help user."
             disabled
             options={selectOptions}

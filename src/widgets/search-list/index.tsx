@@ -1,28 +1,20 @@
 import { useState } from 'react'
 import { ChevronLeftIcon, ChevronRightIcon, ListBulletIcon, Squares2X2Icon } from '@heroicons/react/24/outline'
+import { Hotel } from 'pages/playground/mocks'
 import { cn } from 'shared/lib/utils'
 import { Button } from 'shared/ui/button'
 import { ToggleGroup } from 'shared/ui/toggle-group'
 import { ItemSkeleton, SearchItem } from './ui'
 
-export type Item = {
-  name: string
-  city: string
-  adress: string
-  distanceToCenter: number
-  images: string[]
-  features: any[]
-  price: number
-}
-
 type Props = {
-  items: Item[]
+  items: Hotel[]
   nights: number
   loading: boolean
   fetchNextPage: () => void
   fetchPreviousPage: () => void
   hasNextPage: boolean
   hasPreviousPage: boolean
+  className?: string
 }
 
 export const SearchList = ({
@@ -33,12 +25,13 @@ export const SearchList = ({
   fetchPreviousPage,
   hasNextPage,
   hasPreviousPage,
+  className,
 }: Props) => {
-  const [variant, setVariant] = useState<'list' | 'grid'>('grid')
+  const [variant, setVariant] = useState<'list' | 'grid'>('list')
   const [sort, setSort] = useState<'asc' | 'desc'>('asc')
 
   return (
-    <div className="flex w-full flex-col gap-4">
+    <div className={cn('mt-10 flex w-full flex-col gap-5', className)}>
       <div className="flex justify-between">
         <ToggleGroup
           variant="icon"

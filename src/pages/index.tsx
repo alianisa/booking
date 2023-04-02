@@ -1,10 +1,9 @@
 import Head from 'next/head'
-import { Layout } from 'widgets/layout'
 import { Button } from 'shared/ui/button'
 
 export default function IndexPage() {
   return (
-    <Layout>
+    <>
       <Head>
         <title>Booking</title>
         <meta name="description" content="Next.js template for building apps with Radix UI and Tailwind CSS" />
@@ -27,6 +26,6 @@ export default function IndexPage() {
           <Button variant="secondary">GitHub</Button>
         </div>
       </section>
-    </Layout>
+    </>
   )
 }

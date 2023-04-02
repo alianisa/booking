@@ -17,6 +17,14 @@ const navItems = [
     title: 'Home',
     href: '/',
   },
+  {
+    title: 'Playground',
+    href: '/playground',
+  },
+  {
+    title: 'Search',
+    href: '/search',
+  },
 ]
 export function MainNav() {
   return (

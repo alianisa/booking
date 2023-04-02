@@ -29,14 +29,12 @@ export const DateRangePicker = ({ startDate = null, endDate = null, onChange }: 
         dateFormat="d MMM"
         locale={ru}
         selectsRange
-        nextMonthButtonLabel=">"
-        previousMonthButtonLabel="<"
-        popperPlacement="bottom-start"
+        popperPlacement="bottom"
         popperModifiers={[
           {
             name: 'offset',
             options: {
-              offset: [5, 10],
+              offset: [0, 5],
             },
           },
         ]}
@@ -78,8 +76,12 @@ export const DateRangePicker = ({ startDate = null, endDate = null, onChange }: 
 
 const ButtonInput = forwardRef(({ value, onClick }: any, ref: any) => {
   return (
-    <Button variant="secondary" onClick={onClick} ref={ref} className="min-h-[42px] min-w-[157.75px]">
-      {value}
+    <Button variant="secondary" onClick={onClick} ref={ref} className="min-h-[42px] min-w-[158.77px]" full>
+      {value ? (
+        <p className="mr-auto text-gray-900">{value}</p>
+      ) : (
+        <p className="mr-auto text-gray-500">заезд - выезд</p>
+      )}
     </Button>
   )
 })

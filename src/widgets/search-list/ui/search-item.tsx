@@ -1,15 +1,15 @@
 import { useState } from 'react'
 import { ChevronLeftIcon, ChevronRightIcon, MapIcon, MapPinIcon } from '@heroicons/react/24/outline'
+import { Hotel } from 'pages/playground/mocks'
 import { Navigation, Pagination } from 'swiper'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/react'
 import { cn, getNightsText } from 'shared/lib/utils'
-import { Item } from 'widgets/search-list'
 
 type Props = {
-  item: Item
+  item: Hotel
   nights: number
   loading: boolean
   variant: 'list' | 'grid'
@@ -20,7 +20,7 @@ export const SearchItem = ({ item, nights, variant }: Props) => {
     <div
       key={item.name}
       className={cn(
-        'group flex w-full cursor-pointer flex-col rounded-md border border-gray-300 shadow-sm transition-all duration-100 hover:border-gray-400 hover:shadow-md md:flex-row md:gap-4 md:p-4',
+        'group flex w-full cursor-pointer flex-col rounded-md border border-gray-300 shadow-sm transition-all hover:border-gray-400 hover:shadow-md md:flex-row md:gap-4 md:p-4',
         variant === 'grid' && 'gap-0 md:flex-col md:gap-0 md:p-0'
       )}
     >
@@ -105,7 +105,7 @@ const SwiperButtons = () => {
   const swiper = useSwiper()
   const imagesLength = swiper.slides.length
   const baseStyles = cn(
-    'text-white bg-black/50 rounded-full absolute top-1/2 z-10 -translate-y-1/2 transform p-1 pointer-events-none opacity-0 transition-all duration-100 hidden lg:block',
+    'text-white bg-black/50 rounded-full absolute top-1/2 z-10 -translate-y-1/2 transform p-1 pointer-events-none opacity-0 transition-all hidden lg:block',
     'group-hover:pointer-events-auto group-hover:opacity-100 select-none hover:bg-white/50 hover:text-black hover:scale-125 active:scale-110'
   )
   return (

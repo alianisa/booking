@@ -10,7 +10,7 @@ type Props = {
 
 export const Checkbox = ({ name, label, size = 'md', className, ...props }: Props) => {
   const inputStyles = clsx(
-    'peer ounded border-gray-300 text-gray-800 focus:ring-blue-500 disabled:cursor-not-allowed disabled:opacity-60 transition-colors duration-100 cursor-pointer',
+    'peer ounded border-gray-300 text-gray-800 focus:ring-blue-500 disabled:cursor-not-allowed disabled:opacity-60 transition-colors cursor-pointer',
     size === 'sm' && 'h-4 w-4',
     size === 'md' && 'h-5 w-5'
   )
