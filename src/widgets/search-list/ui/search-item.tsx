@@ -6,7 +6,7 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/react'
-import { cn, getNightsText } from 'shared/lib/utils'
+import { cn, formatNoun } from 'shared/lib/utils'
 
 type Props = {
   item: Hotel
@@ -64,7 +64,9 @@ export const SearchItem = ({ item, nights, variant }: Props) => {
               )}
             >
               <p className="text-2xl font-semibold">{item.price} ₽</p>
-              <p className="text-gray-500">{getNightsText('Цена за', nights)}</p>
+              <p className="text-gray-500">
+                Цена за {formatNoun({ number: nights, words: ['ночь', 'ночи', 'ночей'] })}
+              </p>
             </div>
           </div>
         </div>

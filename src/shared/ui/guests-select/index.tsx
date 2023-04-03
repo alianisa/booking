@@ -1,5 +1,6 @@
 import React from 'react'
 import { ChevronDownIcon, MinusIcon, PlusIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { formatNoun } from 'shared/lib/utils'
 import { Button } from '../button'
 import { IconButton } from '../icon-button'
 import { Popover, PopoverContent, PopoverTrigger } from '../popover'
@@ -21,7 +22,7 @@ export const GuestsSelect = ({ guests, onChange }: Props) => {
       <PopoverTrigger asChild>
         <Button variant="secondary" className="group" full>
           <div className="flex w-full flex-nowrap items-center justify-between gap-2 whitespace-nowrap text-gray-900">
-            {guestsCount} гостя
+            {formatNoun({ number: guestsCount, words: ['гость', 'гостя', 'гостей'] })}
             <ChevronDownIcon className="ml-auto h-5 w-5 transition-transform group-data-[state=open]:rotate-180" />
           </div>
         </Button>
@@ -95,12 +96,12 @@ type ChildrenSelectorProps = {
 const ChildrenSelector = ({ value, onChange }: ChildrenSelectorProps) => {
   return (
     <div className="flex flex-col gap-2">
-      {value.map((children, index) => (
+      {value.map((age, index) => (
         <div
           className="flex w-full items-center justify-between gap-2 rounded-md border border-gray-300 bg-white py-2 px-3 text-base text-gray-900 shadow-sm"
-          key={children + index}
+          key={age + index}
         >
-          Ребенок: {children} лет
+          Ребенок: {age === 0 ? 'До 1 года' : formatNoun({ number: age, words: ['год', 'года', 'лет'] })}
           <XMarkIcon
             className="h-5 w-5 cursor-pointer text-gray-700"
             onClick={() => onChange(value.filter((_, childrenIndex) => index !== childrenIndex))}
