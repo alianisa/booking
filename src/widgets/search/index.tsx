@@ -4,22 +4,24 @@ import { isSaturday, nextSaturday, nextSunday } from 'date-fns'
 import { Button } from 'shared/ui/button'
 import { DateRangePicker, Dates, NullableDate } from 'shared/ui/date-range-picker'
 import { Guests, GuestsSelect } from 'shared/ui/guests-select'
-import { Input } from 'shared/ui/input'
+import { CitySearch } from './ui/city-search'
+import { Tag } from './ui/tag'
 
 type Props = {}
 
 export const Search = (props: Props) => {
   const [startDate, setStartDate] = useState<NullableDate>(null)
   const [endDate, setEndDate] = useState<NullableDate>(null)
+  const [guests, setGuests] = useState<{ adults: number; childrens: number[] }>({
+    adults: 2,
+    childrens: [],
+  })
+  const [city, setCity] = useState('')
   const onChange = (dates: Dates) => {
     const [start, end] = dates
     setStartDate(start)
     setEndDate(end)
   }
-  const [guests, setGuests] = useState<{ adults: number; childrens: number[] }>({
-    adults: 2,
-    childrens: [],
-  })
 
   const setHolidays = () => {
     const today = new Date()
@@ -40,10 +42,10 @@ export const Search = (props: Props) => {
       <div className="flex flex-col gap-4 md:flex-row">
         <div className="flex flex-1 flex-wrap gap-4 md:flex-nowrap">
           <div className="flex basis-full flex-col gap-2 md:basis-2/3">
-            <Input name="city" placeholder="Город" />
+            <CitySearch city={city} onChange={(city: string) => setCity(city)} />
             <div className="hidden gap-2 md:flex">
-              <Tag>Москва</Tag>
-              <Tag>Санкт‑Петербург</Tag>
+              <Tag onClick={() => setCity('Москва')}>Москва</Tag>
+              <Tag onClick={() => setCity('Санкт‑Петербург')}>Санкт‑Петербург</Tag>
             </div>
           </div>
           <div className="flex flex-1 flex-col gap-2">
@@ -58,21 +60,6 @@ export const Search = (props: Props) => {
         </div>
         <Button full>Найти</Button>
       </div>
-    </div>
-  )
-}
-
-type TagProps = React.HTMLAttributes<HTMLDivElement> & {
-  children: React.ReactNode
-}
-
-const Tag = ({ children, ...props }: TagProps) => {
-  return (
-    <div
-      className="cursor-pointer rounded-md bg-gray-100 p-1 text-sm text-gray-500 hover:text-gray-700 hover:underline"
-      {...props}
-    >
-      {children}
     </div>
   )
 }

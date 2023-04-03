@@ -35,7 +35,7 @@ export const Input = forwardRef(
   ) => {
     const styles = cn(
       'block w-full rounded-md border text-gray-900 placeholder-gray-500 shadow-sm outline-none transition-all focus:border-blue-500 focus:ring-1 focus:ring-blue-500 disabled:cursor-not-allowed font-medium',
-      variant === 'outline' && 'border-gray-300 bg-white text-base hover:border-gray-400',
+      variant === 'outline' && 'border-gray-300 bg-white hover:border-gray-400',
       variant === 'filled' && 'border-gray-100 bg-gray-100 hover:bg-gray-200 focus:bg-white',
       props?.disabled && variant === 'outline' && 'hover:!border-gray-300',
       props?.disabled && variant === 'filled' && 'hover:border-gray-100 hover:bg-gray-100',

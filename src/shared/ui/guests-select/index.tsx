@@ -23,7 +23,7 @@ export const GuestsSelect = ({ guests, onChange }: Props) => {
         <Button variant="secondary" className="group" full>
           <div className="flex w-full flex-nowrap items-center justify-between gap-2 whitespace-nowrap text-gray-900">
             {formatNoun({ number: guestsCount, words: ['гость', 'гостя', 'гостей'] })}
-            <ChevronDownIcon className="ml-auto h-5 w-5 transition-transform group-data-[state=open]:rotate-180" />
+            <ChevronDownIcon className="ml-auto h-5 w-5 group-data-[state=open]:rotate-180" />
           </div>
         </Button>
       </PopoverTrigger>
