@@ -1,5 +1,5 @@
 import { MinusIcon, PlusIcon } from '@heroicons/react/24/outline'
-import { IconButton } from '../../../../shared/ui/icon-button'
+import { IconButton } from 'shared/ui/icon-button'
 
 type AdultsSelectorProps = {
   value: number
