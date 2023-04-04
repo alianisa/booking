@@ -10,7 +10,9 @@ type Props = {
   hint?: string
   variant?: 'outline' | 'filled'
   size?: 'sm' | 'md'
-  error?: string
+  error?: {
+    message: string
+  }
   leftElement?: JSX.Element
   rightElement?: JSX.Element
 } & Omit<InputHTMLAttributes<HTMLInputElement>, 'size'>
@@ -68,7 +70,7 @@ export const Input = forwardRef(
           )}
         </div>
         {hint && !error && <p className="mt-2 text-sm text-gray-600">{hint}</p>}
-        {error && <p className="mt-2 text-sm text-red-500">{error}</p>}
+        {error?.message && <p className="mt-2 text-sm text-red-500">{error?.message}</p>}
       </div>
     )
   }

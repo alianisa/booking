@@ -1,16 +1,26 @@
-import { useEffect, useLayoutEffect, useState } from 'react'
+import { useLayoutEffect, useState } from 'react'
 import { autoUpdate, offset, size, useFloating } from '@floating-ui/react-dom'
 import { useCombobox } from 'downshift'
+import { useController } from 'react-hook-form'
 import { fetchCities } from 'shared/api'
 import { cn } from 'shared/lib/utils'
+import { SearchControl } from 'widgets/search'
 import { Input } from 'shared/ui/input'
+import { Tag } from './tag'
 
 type Props = {
-  city: string
-  onChange: (city: string) => void
+  control: SearchControl
 }
 
-export const CitySearch = ({ city, onChange }: Props) => {
+export const CitySearch = ({ control }: Props) => {
+  const {
+    field: { value, onChange },
+    fieldState: { error },
+  } = useController({
+    name: 'city',
+    control,
+    rules: { required: true },
+  })
   const [items, setItems] = useState([])
   const setNewItems = async (query: string) => {
     const cities = await fetchCities(query)
@@ -29,25 +39,21 @@ export const CitySearch = ({ city, onChange }: Props) => {
       }),
     ],
   })
-  const { isOpen, getMenuProps, getInputProps, highlightedIndex, getItemProps, selectedItem, setInputValue } =
-    useCombobox({
-      id: 'city-search',
-      onInputValueChange: ({ inputValue }) => {
-        if (inputValue) {
-          setNewItems(inputValue)
-        }
-      },
-      onSelectedItemChange: ({ selectedItem }) => {
-        if (selectedItem) {
-          onChange(selectedItem)
-        }
-      },
-      items,
-    })
-
-  useEffect(() => {
-    setInputValue(city)
-  }, [setInputValue, city])
+  const { isOpen, getMenuProps, getInputProps, highlightedIndex, getItemProps, setInputValue } = useCombobox({
+    id: 'city-search',
+    onInputValueChange: ({ inputValue }) => {
+      if (inputValue) {
+        setNewItems(inputValue)
+      }
+    },
+    onSelectedItemChange: ({ selectedItem }) => {
+      if (selectedItem) {
+        onChange(selectedItem)
+      }
+    },
+    items,
+    selectedItem: value,
+  })
 
   useLayoutEffect(() => {
     if (isOpen) {
@@ -56,11 +62,12 @@ export const CitySearch = ({ city, onChange }: Props) => {
   }, [isOpen, update, refs.floating, refs.reference])
 
   return (
-    <div>
+    <div className="flex basis-full flex-col gap-2 md:basis-2/3">
       <Input
+        error={!!error}
         placeholder="Город"
         {...getInputProps({ ref: refs.reference as any })}
-        onBlur={() => setInputValue(selectedItem ?? '')}
+        onBlur={() => setInputValue(value ?? '')}
       />
       <ul
         className={cn(
@@ -77,11 +84,7 @@ export const CitySearch = ({ city, onChange }: Props) => {
         {isOpen &&
           items.map((item, index) => (
             <li
-              className={cn(
-                'flex flex-col py-2 px-3 shadow-sm',
-                highlightedIndex === index && 'bg-gray-100',
-                selectedItem === item && 'font-bold'
-              )}
+              className={cn('flex flex-col py-2 px-3 shadow-sm', highlightedIndex === index && 'bg-gray-100')}
               key={`${item}${index}`}
               {...getItemProps({ item, index })}
             >
@@ -89,6 +92,10 @@ export const CitySearch = ({ city, onChange }: Props) => {
             </li>
           ))}
       </ul>
+      <div className="hidden gap-2 md:flex">
+        <Tag onClick={() => onChange('Москва')}>Москва</Tag>
+        <Tag onClick={() => onChange('Санкт‑Петербург')}>Санкт‑Петербург</Tag>
+      </div>
     </div>
   )
 }

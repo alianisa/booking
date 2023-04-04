@@ -1,35 +1,26 @@
-import React, { useState } from 'react'
 import { AdjustmentsHorizontalIcon } from '@heroicons/react/24/outline'
-import { isSaturday, nextSaturday, nextSunday } from 'date-fns'
+import { Control, useForm } from 'react-hook-form'
+import { GuestsSelect } from 'widgets/search/ui/guests-select'
 import { Button } from 'shared/ui/button'
-import { DateRangePicker, Dates, NullableDate } from 'shared/ui/date-range-picker'
-import { Guests, GuestsSelect } from 'shared/ui/guests-select'
 import { CitySearch } from './ui/city-search'
-import { Tag } from './ui/tag'
+import { DateRangePicker } from './ui/date-range-picker'
 
 type Props = {}
 
-export const Search = (props: Props) => {
-  const [startDate, setStartDate] = useState<NullableDate>(null)
-  const [endDate, setEndDate] = useState<NullableDate>(null)
-  const [guests, setGuests] = useState<{ adults: number; childrens: number[] }>({
-    adults: 2,
-    childrens: [],
-  })
-  const [city, setCity] = useState('')
-  const onChange = (dates: Dates) => {
-    const [start, end] = dates
-    setStartDate(start)
-    setEndDate(end)
-  }
+const defaultValues = {
+  city: '',
+  startDate: null,
+  endDate: null,
+  guests: { adults: 2, childrens: [] },
+}
 
-  const setHolidays = () => {
-    const today = new Date()
-    const saturday = isSaturday(today) ? today : nextSaturday(today)
-    const sunday = nextSunday(today)
-    setStartDate(saturday)
-    setEndDate(sunday)
-  }
+export type SearchControl = Control<typeof defaultValues>
+
+export const Search = (props: Props) => {
+  const { handleSubmit, control } = useForm({
+    defaultValues,
+  })
+  const onSubmit = (data: any) => console.log('data', data)
 
   return (
     <div className="flex flex-col gap-4">
@@ -39,27 +30,16 @@ export const Search = (props: Props) => {
           Фильтры
         </Button>
       </div>
-      <div className="flex flex-col gap-4 md:flex-row">
-        <div className="flex flex-1 flex-wrap gap-4 md:flex-nowrap">
-          <div className="flex basis-full flex-col gap-2 md:basis-2/3">
-            <CitySearch city={city} onChange={(city: string) => setCity(city)} />
-            <div className="hidden gap-2 md:flex">
-              <Tag onClick={() => setCity('Москва')}>Москва</Tag>
-              <Tag onClick={() => setCity('Санкт‑Петербург')}>Санкт‑Петербург</Tag>
-            </div>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className="flex flex-col gap-4 md:flex-row">
+          <div className="flex flex-1 flex-wrap gap-4 md:flex-nowrap">
+            <CitySearch control={control} />
+            <DateRangePicker control={control} />
+            <GuestsSelect control={control} />
           </div>
-          <div className="flex flex-1 flex-col gap-2">
-            <DateRangePicker startDate={startDate} endDate={endDate} onChange={onChange} />
-            <div className="hidden gap-2 md:flex">
-              <Tag onClick={() => setHolidays()}>Ближайшие выходные</Tag>
-            </div>
-          </div>
-          <div className="flex-1">
-            <GuestsSelect guests={guests} onChange={(guests: Guests) => setGuests(guests)} />
-          </div>
+          <Button full>Найти</Button>
         </div>
-        <Button full>Найти</Button>
-      </div>
+      </form>
     </div>
   )
 }
