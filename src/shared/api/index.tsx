@@ -11,6 +11,9 @@ export const fetchCities = async (query: string) => {
   }
   try {
     const response = await fetch(url, options)
+    if (!response.ok) {
+      throw new Error(response.statusText)
+    }
     const data = await response.json()
     const cities = data.suggestions.map((suggestion: any) => suggestion.data.city)
     return cities
