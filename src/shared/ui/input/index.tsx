@@ -48,7 +48,6 @@ export const Input = forwardRef(
       rightElement && 'pr-10',
       className
     )
-
     return (
       <div className={clsx('flex flex-col', full && 'w-full')}>
         {label && (
