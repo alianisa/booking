@@ -1,14 +1,13 @@
 import { ChevronDownIcon } from '@heroicons/react/24/outline'
 import { useController } from 'react-hook-form'
 import { formatNoun } from 'shared/lib/utils'
-import { SearchControl } from 'widgets/search'
 import { Button } from 'shared/ui/button'
 import { Popover, PopoverContent, PopoverTrigger } from 'shared/ui/popover'
 import { AdultsSelector } from './adults-selector'
 import { ChildrenSelector } from './children-selector'
 
 type Props = {
-  control: SearchControl
+  control: any
 }
 
 export const GuestsSelect = ({ control }: Props) => {

@@ -31,7 +31,7 @@ export const SearchList = ({
   const [sort, setSort] = useState<'asc' | 'desc'>('asc')
 
   return (
-    <div className={cn('mt-10 flex w-full flex-col gap-5', className)}>
+    <div className={cn('mt-5 flex w-full flex-col gap-5', className)}>
       <div className="flex justify-between">
         <ToggleGroup
           variant="icon"
@@ -61,7 +61,7 @@ export const SearchList = ({
       >
         {!loading &&
           items.map((item, index) => (
-            <SearchItem item={item} nights={nights} key={item.name + index} loading={loading} variant={variant} />
+            <SearchItem item={item} nights={nights} key={item.name + index} variant={variant} />
           ))}
         {loading && Array.from(Array(10)).map((item, index) => <ItemSkeleton key={index} variant={variant} />)}
       </div>

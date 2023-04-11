@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { Placemark, Map as YMap, YMaps, ZoomControl, useYMaps } from '@pbe/react-yandex-maps'
+import { Map, Placemark, ZoomControl, useYMaps } from '@pbe/react-yandex-maps'
 import { Hotel } from 'pages/playground/mocks'
 
 type Props = {
@@ -10,7 +10,7 @@ type Props = {
   }
 }
 
-export const Map = ({
+export const SearchMap = ({
   hotels,
   defaultState = {
     center: [55.751574, 37.573856],
@@ -18,16 +18,14 @@ export const Map = ({
   },
 }: Props) => {
   return (
-    <YMaps>
-      <div className="mt-10 overflow-hidden rounded-md">
-        <YMap defaultState={defaultState} height={400} width={'100%'}>
-          {hotels.map((hotel, index) => (
-            <Mark hotel={hotel} key={hotel.name + index} />
-          ))}
-          <ZoomControl options={{ size: 'small', position: { top: 16, right: 16 } }} />
-        </YMap>
-      </div>
-    </YMaps>
+    <div className="mt-5 overflow-hidden rounded-md">
+      <Map defaultState={defaultState} height={400} width={'100%'}>
+        {hotels.map((hotel, index) => (
+          <Mark hotel={hotel} key={hotel.name + index} />
+        ))}
+        <ZoomControl options={{ size: 'small', position: { top: 16, right: 16 } }} />
+      </Map>
+    </div>
   )
 }
 

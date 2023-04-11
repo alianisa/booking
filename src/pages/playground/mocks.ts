@@ -1,4 +1,5 @@
 export type Hotel = {
+  id: number
   name: string
   city: string
   adress: string
@@ -11,6 +12,7 @@ export type Hotel = {
 
 export const searchListMock: Hotel[] = [
   {
+    id: 1,
     name: 'Cosmos Moscow Vdnh',
     city: 'Москва',
     adress: 'Москва, проспект Мира, 150',
@@ -21,6 +23,7 @@ export const searchListMock: Hotel[] = [
     price: 3776,
   },
   {
+    id: 2,
     name: 'Soluxe Hotel',
     city: 'Москва',
     adress: 'Москва, улица Вильгельма Пика, 16',

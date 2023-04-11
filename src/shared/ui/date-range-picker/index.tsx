@@ -4,8 +4,7 @@ import { ru } from 'date-fns/locale'
 import DatePicker from 'react-datepicker'
 import { useController } from 'react-hook-form'
 import { capitalize } from 'shared/lib/utils'
-import { SearchControl } from 'widgets/search'
-import { Tag } from 'widgets/search/ui/tag'
+import { Tag } from 'widgets/hotel-search/ui/tag'
 import { IconButton } from 'shared/ui/icon-button'
 import { ButtonInput } from './button-input'
 
@@ -13,7 +12,7 @@ export type NullableDate = Date | null
 export type Dates = [start: NullableDate, end: NullableDate]
 
 type Props = {
-  control: SearchControl
+  control: any
 }
 
 const today = new Date()

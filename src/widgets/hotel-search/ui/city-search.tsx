@@ -4,7 +4,7 @@ import { useCombobox } from 'downshift'
 import { useController } from 'react-hook-form'
 import { fetchCities } from 'shared/api'
 import { cn } from 'shared/lib/utils'
-import { SearchControl } from 'widgets/search'
+import { SearchControl } from 'widgets/hotel-search'
 import { Input } from 'shared/ui/input'
 import { Tag } from './tag'
 

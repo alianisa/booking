@@ -1,8 +1,8 @@
 import Head from 'next/head'
 import { searchListMock } from 'pages/playground/mocks'
-import { Search } from 'widgets/search'
+import { HotelSearch } from 'widgets/hotel-search'
 import { SearchList } from 'widgets/search-list'
-import { Map } from 'widgets/search/ui/map'
+import { SearchMap } from 'widgets/search-map'
 
 export default function SearchPage() {
   return (
@@ -10,10 +10,10 @@ export default function SearchPage() {
       <Head>
         <title>Booking search</title>
       </Head>
-      <div className="mx-auto flex max-w-7xl flex-col py-10">
-        <Search />
-        {/* <Map hotels={searchListMock} /> */}
-        <div className="mt-10 h-[400px] w-full animate-pulse rounded-md bg-gray-200"></div>
+      <div className="mx-auto flex max-w-7xl flex-col py-5">
+        <HotelSearch />
+        {/* <SearchMap hotels={searchListMock} /> */}
+        <div className="mt-5 h-[400px] w-full animate-pulse rounded-md bg-gray-200"></div>
         <SearchList
           items={searchListMock}
           nights={2}

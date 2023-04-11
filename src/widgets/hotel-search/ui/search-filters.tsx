@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { AdjustmentsHorizontalIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import * as Dialog from '@radix-ui/react-dialog'
 import { Controller } from 'react-hook-form'
-import { SearchControl } from 'widgets/search'
+import { SearchControl } from 'widgets/hotel-search'
 import { Checkbox } from 'shared/ui/checkbox'
 import { Button } from '../../../shared/ui/button'
 
@@ -25,7 +25,7 @@ const LABELS_MAP = {
   hasBreakfast: 'Завтрак включён',
   hasTwoMeals: 'Завтрак + обед или ужин включены',
   hasThreeMeals: 'Завтрак, обед и ужин включены',
-  hasAallInclusive: 'Всё включено',
+  hasNoFood: 'Без питания',
 } as const
 
 const AMENITIES_FILTERS = [
@@ -41,7 +41,7 @@ const AMENITIES_FILTERS = [
   'hasTransfer',
   'hasConferenceHall',
 ] as const
-const FOOD_FILTERS = ['hasBreakfast', 'hasTwoMeals', 'hasThreeMeals', 'hasAallInclusive'] as const
+const FOOD_FILTERS = ['hasBreakfast', 'hasTwoMeals', 'hasThreeMeals', 'hasNoFood'] as const
 const LOCATION_FILTERS = ['beachClose', 'skiSlopeClose', 'airportClose'] as const
 
 type Props = {

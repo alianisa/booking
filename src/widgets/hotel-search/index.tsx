@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { Control, useForm } from 'react-hook-form'
-import { GuestsSelect } from 'widgets/search/ui/guests-select'
-import { SearchFilters } from 'widgets/search/ui/search-filters'
+import { SearchFilters } from 'widgets/hotel-search/ui/search-filters'
 import { Button } from 'shared/ui/button'
+import { DateRangePicker } from 'shared/ui/date-range-picker'
+import { GuestsSelect } from 'shared/ui/guests-select'
 import { CitySearch } from './ui/city-search'
-import { DateRangePicker } from './ui/date-range-picker'
 
 type Props = {}
 
@@ -32,13 +32,13 @@ const defaultValues = {
     hasThreeMeals: false,
     hasTwoMeals: false,
     hasBreakfast: false,
-    hasAallInclusive: false,
+    hasNoFood: false,
   },
 }
 
 export type SearchControl = Control<typeof defaultValues>
 
-export const Search = (props: Props) => {
+export const HotelSearch = (props: Props) => {
   const { handleSubmit, control, resetField } = useForm({
     defaultValues,
   })
