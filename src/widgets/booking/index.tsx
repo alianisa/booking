@@ -29,12 +29,37 @@ type Item = {
   id: number
   guests: {
     adults: number
-    childrens?: number[]
+    childrens: number[]
   }
 }
 
 type Props = {
   item: Item
+}
+const formatDescription = (adults: number, childrenAges: number[], nights: number) => {
+  const adultsPart = `для ${formatNoun({
+    number: adults,
+    words: ['взрослого', 'взрослых', 'взрослых'],
+  })}`
+
+  const childrenAgesPart =
+    childrenAges.length > 0
+      ? `и ${childrenAges.length} ${childrenAges.length > 1 ? 'детей' : 'ребенка'}: ${childrenAges.map(
+          (age) =>
+            ' ' +
+            formatNoun({
+              number: age,
+              words: ['год', 'года', 'лет'],
+            })
+        )}`
+      : ''
+
+  const nigtsPart = `на ${formatNoun({
+    number: nights,
+    words: ['ночь', 'ночи', 'ночей'],
+  })}`
+
+  return `${adultsPart} ${childrenAgesPart} ${nigtsPart}`
 }
 
 export const Booking = ({ item }: Props) => {
@@ -64,12 +89,7 @@ export const Booking = ({ item }: Props) => {
                 &nbsp;·&nbsp;{item.size} м<sup>2</sup>
               </span>
             </span>
-            <span>
-              {`для ${formatNoun({
-                number: item.guests.adults,
-                words: ['взрослого', 'взрослых', 'взрослых'],
-              })} на ${formatNoun({ number: nights, words: ['ночь', 'ночи', 'ночей'] })}`}
-            </span>
+            <span>{formatDescription(item.guests.adults, item.guests.childrens, nights)}</span>
             <p className="mt-1 cursor-pointer text-blue-700 hover:text-red-500" onClick={() => setShowModalAbout(true)}>
               Подробнее о номере
             </p>

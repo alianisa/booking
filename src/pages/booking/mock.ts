@@ -10,7 +10,8 @@ export const bookMock = {
     price: 4028,
     guests: {
       adults: 2,
-      childrens: [9, 15],
+      childrens: [1, 3, 5, 9, 17],
+      // childrens: [2],
     },
   },
   room: {
