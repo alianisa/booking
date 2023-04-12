@@ -1,4 +1,5 @@
 import { useMemo } from 'react'
+import { useRouter } from 'next/router'
 import { Map, Placemark, ZoomControl, useYMaps } from '@pbe/react-yandex-maps'
 import { Hotel } from 'pages/playground/mocks'
 
@@ -30,6 +31,7 @@ export const SearchMap = ({
 }
 
 const Mark = ({ hotel }: { hotel: Hotel }) => {
+  const router = useRouter()
   const ymaps = useYMaps(['templateLayoutFactory'])
   const coords = hotel.coords.split(',').map((coord) => Number(coord))
   const layout = useMemo(() => {
@@ -77,8 +79,9 @@ const Mark = ({ hotel }: { hotel: Hotel }) => {
           // @ts-ignore
           this.getData().geoObject.events.add(
             'click',
-            () => {
-              console.log(hotel.name, 'pressed')
+            (e: any) => {
+              e.preventDefault()
+              router.push('/hotels/1')
             },
             this
           )

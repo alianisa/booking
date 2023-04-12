@@ -73,6 +73,7 @@ export const Booking = ({ item }: Props) => {
             <p className="mt-1 cursor-pointer text-blue-700 hover:text-red-500" onClick={() => setShowModalAbout(true)}>
               Подробнее о номере
             </p>
+            <p className="mt-2 text-3xl font-semibold">{item.price} ₽</p>
           </div>
           <div className="flex gap-4 border-t border-gray-300 pt-2 md:mt-0 md:flex-col md:border-l md:border-t-0 md:pt-0 md:pl-4">
             <div className="flex flex-1 flex-col">
