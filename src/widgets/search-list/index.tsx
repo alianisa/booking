@@ -29,7 +29,7 @@ export const SearchList = ({
 }: Props) => {
   const [variant, setVariant] = useState<'list' | 'grid'>('list')
   const [sort, setSort] = useState<'asc' | 'desc'>('asc')
-
+  const sortedItems = items.sort((a, b) => (sort === 'asc' ? a.price - b.price : b.price - a.price))
   return (
     <div className={cn('mt-5 flex w-full flex-col gap-5', className)}>
       <div className="flex justify-between">
@@ -60,7 +60,7 @@ export const SearchList = ({
         )}
       >
         {!loading &&
-          items.map((item, index) => (
+          sortedItems.map((item, index) => (
             <SearchItem item={item} nights={nights} key={item.name + index} variant={variant} />
           ))}
         {loading && Array.from(Array(10)).map((item, index) => <ItemSkeleton key={index} variant={variant} />)}
