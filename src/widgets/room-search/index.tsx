@@ -6,9 +6,9 @@ import { GuestsSelect } from 'shared/ui/guests-select'
 type Props = {}
 
 const defaultValues = {
-  startDate: null,
-  endDate: null,
-  guests: { adults: 2, childrens: [] },
+  checkInDate: null,
+  checkOutDate: null,
+  guests: { adults: 2, childrenAges: [] },
 }
 
 export const RoomSearch = (props: Props) => {

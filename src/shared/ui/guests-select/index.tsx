@@ -17,7 +17,7 @@ export const GuestsSelect = ({ control }: Props) => {
     name: 'guests',
     control,
   })
-  const guestsCount = value.adults + value.childrens.length
+  const guestsCount = value.adults + value.childrenAges.length
   return (
     <div className="flex-1">
       <Popover>
@@ -33,8 +33,8 @@ export const GuestsSelect = ({ control }: Props) => {
           <div className="flex flex-col gap-2">
             <AdultsSelector value={value.adults} onChange={(adults) => onChange({ ...value, adults: adults })} />
             <ChildrenSelector
-              value={value.childrens}
-              onChange={(childrens) => onChange({ ...value, childrens: childrens })}
+              value={value.childrenAges}
+              onChange={(childrenAges) => onChange({ ...value, childrenAges: childrenAges })}
             />
           </div>
         </PopoverContent>

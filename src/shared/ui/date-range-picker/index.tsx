@@ -22,7 +22,7 @@ export const DateRangePicker = ({ control }: Props) => {
     field: { value: startDate, onChange: setStartDate },
     fieldState: { error: startDateError },
   } = useController({
-    name: 'startDate',
+    name: 'checkInDate',
     control,
     rules: { required: true },
   })
@@ -30,7 +30,7 @@ export const DateRangePicker = ({ control }: Props) => {
     field: { value: endDate, onChange: setEndDate },
     fieldState: { error: endDateError },
   } = useController({
-    name: 'endDate',
+    name: 'checkOutDate',
     control,
     rules: { required: true },
   })

@@ -22,10 +22,6 @@ const LABELS_MAP = {
   skiSlopeClose: 'Горнолыжный склон рядом',
   airportClose: 'Аэропорт рядом',
   animalsAllowed: 'Можно с животными',
-  hasBreakfast: 'Завтрак включён',
-  hasTwoMeals: 'Завтрак + обед или ужин включены',
-  hasThreeMeals: 'Завтрак, обед и ужин включены',
-  hasNoFood: 'Без питания',
 } as const
 
 const AMENITIES_FILTERS = [
@@ -41,7 +37,7 @@ const AMENITIES_FILTERS = [
   'hasTransfer',
   'hasConferenceHall',
 ] as const
-const FOOD_FILTERS = ['hasBreakfast', 'hasTwoMeals', 'hasThreeMeals', 'hasNoFood'] as const
+
 const LOCATION_FILTERS = ['beachClose', 'skiSlopeClose', 'airportClose'] as const
 
 type Props = {
@@ -86,17 +82,6 @@ export const SearchFilters = ({ control, onReset, filtersCount }: Props) => {
               <div className="flex flex-col gap-2">
                 <p className="font-semibold">Удобства</p>
                 {AMENITIES_FILTERS.map((filter) => (
-                  <Controller
-                    control={control}
-                    key={filter}
-                    name={`filters.${filter}`}
-                    render={({ field }) => <Checkbox {...field} label={LABELS_MAP[filter]} />}
-                  />
-                ))}
-              </div>
-              <div className="flex flex-col gap-2">
-                <p className="font-semibold">Питание</p>
-                {FOOD_FILTERS.map((filter) => (
                   <Controller
                     control={control}
                     key={filter}
