@@ -56,7 +56,7 @@ export const serializeQuery = (formValues: { [key: string]: any }) => {
   serializedQuery['adults'] = formValues.guests.adults
   if (formValues.guests.childrenAges.length > 0)
     serializedQuery['childrenAges'] = formValues.guests.childrenAges.join(',')
-  if (formValues) {
+  if (formValues.filters) {
     const activeFilters = Object.keys(formValues.filters).filter((filter) => formValues.filters[filter])
     if (activeFilters.length > 0) serializedQuery['filters'] = activeFilters.join(',')
   }

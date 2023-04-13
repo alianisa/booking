@@ -1,5 +1,8 @@
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 import { MapIcon, MapPinIcon } from '@heroicons/react/24/outline'
+import { useCoords } from 'shared/lib/use-coords'
+import { parseQuery } from 'shared/lib/utils'
 import { HotelImages } from 'widgets/hotel-images'
 import { HotelMap } from 'widgets/hotel-map'
 import { RoomList } from 'widgets/room-list'
@@ -9,7 +12,10 @@ import { hotelMock } from './mock'
 export default function HotelPage() {
   const hotel = hotelMock.hotel
   const rooms = hotelMock.rooms
-  const coords = hotel.coords.split(',').map((coord) => Number(coord))
+  const router = useRouter()
+  const query = router.query
+  const queryValues = parseQuery(query)
+  const coords = useCoords(hotel.adress)
   const features = Object.entries(hotel.features)
   return (
     <>
@@ -32,21 +38,17 @@ export default function HotelPage() {
         </div>
         <div className="mt-5 flex flex-col gap-2 md:h-[300px] md:flex-row">
           <HotelImages images={hotel.images} />
-          {/* <div className="overflow-hidden rounded-md md:basis-1/4">
-            <HotelMap coords={coords} height={300} className="h-[200px] md:h-[300px]" />
-          </div> */}
+          {/* <HotelMap coords={coords} height={300} className="h-[200px] md:h-[300px]" /> */}
           <div className="h-[300px] animate-pulse rounded-md bg-gray-200 md:basis-1/4"></div>
         </div>
         <div className="mt-5">
           <p className="mb-2 text-xl font-semibold">Доступные номера</p>
-          <RoomSearch />
+          <RoomSearch queryValues={queryValues} />
           <RoomList items={rooms as any} nights={2} loading={false} />
         </div>
         <div className="mt-5">
           <p className="mb-2 text-xl font-semibold">Расположение</p>
-          {/* <div className="overflow-hidden rounded-md md:basis-1/4">
-            <HotelMap coords={coords} height={400} className="h-[400px]" />
-          </div> */}
+          {/* <HotelMap coords={coords} height={400} className="h-[400px]" /> */}
           <div className="h-[400px] animate-pulse rounded-md bg-gray-200 md:basis-1/4"></div>
         </div>
         <div className="mt-5">

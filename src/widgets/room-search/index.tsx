@@ -1,9 +1,12 @@
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
+import { serializeQuery } from 'shared/lib/utils'
 import { Button } from 'shared/ui/button'
 import { DateRangePicker } from 'shared/ui/date-range-picker'
 import { GuestsSelect } from 'shared/ui/guests-select'
 
-type Props = {}
+type Props = { queryValues: { [key: string]: any } }
 
 const defaultValues = {
   checkInDate: null,
@@ -11,13 +14,22 @@ const defaultValues = {
   guests: { adults: 2, childrenAges: [] },
 }
 
-export const RoomSearch = (props: Props) => {
-  const { handleSubmit, control } = useForm({
+export const RoomSearch = ({ queryValues }: Props) => {
+  const router = useRouter()
+  const { handleSubmit, control, reset } = useForm({
     defaultValues,
   })
+
   const onSubmit = (data: any) => {
-    console.log('data', data)
+    const serializedQuery = serializeQuery(data)
+    router.push({ query: { ...serializedQuery, hotelId: router.query.hotelId } })
+    console.log(data)
   }
+
+  useEffect(() => {
+    const initialValue = { ...defaultValues, ...queryValues }
+    reset(initialValue)
+  }, [queryValues, reset])
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} id="search-form">

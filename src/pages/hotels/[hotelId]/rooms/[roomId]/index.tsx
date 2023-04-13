@@ -1,5 +1,7 @@
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 import { Controller, useForm } from 'react-hook-form'
+import { parseQuery } from 'shared/lib/utils'
 import { Booking } from 'widgets/booking'
 import { Button } from 'shared/ui/button'
 import { Input } from 'shared/ui/input'
@@ -15,9 +17,14 @@ const defaultValues = {
 }
 
 export default function BookingPage() {
+  const router = useRouter()
+  const query = router.query
+  const { checkInDate, checkOutDate, guests } = parseQuery(query)
+
   const { handleSubmit, control } = useForm({
     defaultValues,
   })
+
   const onSubmit = (data: any) => {
     console.log('data', data)
   }
@@ -28,7 +35,12 @@ export default function BookingPage() {
         <title>Booking search</title>
       </Head>
       <div className="mx-auto flex max-w-7xl flex-col py-5">
-        <Booking item={{ ...bookMock.book, ...bookMock.room }} />
+        <Booking
+          checkInDate={checkInDate}
+          checkOutDate={checkOutDate}
+          guests={guests}
+          item={{ ...bookMock.book, ...bookMock.room }}
+        />
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mt-5 flex w-full flex-col">
             <p className="mb-2 text-xl font-semibold">Контактные данные</p>

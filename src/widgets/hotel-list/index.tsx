@@ -2,14 +2,14 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { ChevronLeftIcon, ChevronRightIcon, ListBulletIcon, Squares2X2Icon } from '@heroicons/react/24/outline'
-import { Hotel } from 'pages/playground/mocks'
+import { Hotel as HotelType } from 'pages/playground/mocks'
 import { cn } from 'shared/lib/utils'
 import { Button } from 'shared/ui/button'
 import { ToggleGroup } from 'shared/ui/toggle-group'
-import { ItemSkeleton, SearchItem } from './ui'
+import { Hotel, ItemSkeleton } from './ui'
 
 type Props = {
-  items: Hotel[]
+  items: HotelType[]
   nights: number
   loading: boolean
   fetchNextPage: () => void
@@ -19,7 +19,7 @@ type Props = {
   className?: string
 }
 
-export const SearchList = ({
+export const HotelList = ({
   items,
   nights,
   loading,
@@ -64,9 +64,13 @@ export const SearchList = ({
         )}
       >
         {!loading &&
-          sortedItems.map((item, index) => (
-            <Link href={{ pathname: `/hotels/${item.id}`, query: linkParams }} className="flex" key={item.name + index}>
-              <SearchItem item={item} nights={nights} variant={variant} />
+          sortedItems.map((hotel, index) => (
+            <Link
+              href={{ pathname: `/hotels/${hotel.id}`, query: linkParams }}
+              className="flex"
+              key={hotel.name + index}
+            >
+              <Hotel item={hotel} nights={nights} variant={variant} />
             </Link>
           ))}
         {loading && Array.from(Array(10)).map((item, index) => <ItemSkeleton key={index} variant={variant} />)}

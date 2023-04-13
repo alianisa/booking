@@ -42,6 +42,7 @@ export const HotelSearch = ({ queryValues }: Props) => {
     defaultValues,
   })
   const [filtersCount, setFiltersCount] = useState(0)
+
   const onSubmit = (data: any) => {
     const serializedQuery = serializeQuery(data)
     router.push({ query: { ...serializedQuery } })

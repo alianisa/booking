@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import Link from 'next/link'
 import { MapPinIcon } from '@heroicons/react/24/outline'
 import { differenceInCalendarDays, format } from 'date-fns'
 import { ru } from 'date-fns/locale'
@@ -12,9 +11,6 @@ import { Images } from './images'
 type Item = {
   hotelName: string
   hotelAdress: string
-  coords: string
-  checkInDate: string
-  checkOutDate: string
   checkInTime: string
   checkOutTime: string
   name: string
@@ -26,15 +22,16 @@ type Item = {
     [key: string]: string[]
   }
   description: string
-  id: number
-  guests: {
-    adults: number
-    childrens: number[]
-  }
 }
 
 type Props = {
   item: Item
+  checkInDate: Date
+  checkOutDate: Date
+  guests: {
+    adults: number
+    childrenAges: number[]
+  }
 }
 const formatDescription = (adults: number, childrenAges: number[], nights: number) => {
   const adultsPart = `для ${formatNoun({
@@ -62,11 +59,13 @@ const formatDescription = (adults: number, childrenAges: number[], nights: numbe
   return `${adultsPart} ${childrenAgesPart} ${nigtsPart}`
 }
 
-export const Booking = ({ item }: Props) => {
+export const Booking = ({ item, checkInDate, checkOutDate, guests }: Props) => {
   const [showModalImages, setShowModalImages] = useState(false)
   const [showModalAbout, setShowModalAbout] = useState(false)
-  const nights = differenceInCalendarDays(new Date(item.checkOutDate), new Date(item.checkInDate))
-
+  const nights = differenceInCalendarDays(checkOutDate, checkInDate)
+  if (!checkInDate) return null
+  if (!checkOutDate) return null
+  if (!guests) return null
   return (
     <>
       <div
@@ -89,7 +88,7 @@ export const Booking = ({ item }: Props) => {
                 &nbsp;·&nbsp;{item.size} м<sup>2</sup>
               </span>
             </span>
-            <span>{formatDescription(item.guests.adults, item.guests.childrens, nights)}</span>
+            <span>{formatDescription(guests.adults, guests.childrenAges, nights)}</span>
             <p className="mt-1 cursor-pointer text-blue-700 hover:text-red-500" onClick={() => setShowModalAbout(true)}>
               Подробнее о номере
             </p>
@@ -98,12 +97,12 @@ export const Booking = ({ item }: Props) => {
           <div className="flex gap-4 border-t border-gray-300 pt-2 md:mt-0 md:flex-col md:border-l md:border-t-0 md:pt-0 md:pl-4">
             <div className="flex flex-1 flex-col">
               <span className="font-semibold text-gray-700">Заезд</span>
-              <span className="font-bold">{format(new Date(item.checkInDate), 'd MMMM, E', { locale: ru })}</span>
+              <span className="font-bold">{format(checkInDate, 'd MMMM, E', { locale: ru })}</span>
               <span className="text-sm">с {item.checkInTime}</span>
             </div>
             <div className="flex flex-1 flex-col">
               <span className="font-semibold text-gray-700">Выезд</span>
-              <span className="font-bold">{format(new Date(item.checkOutDate), 'd MMMM, E', { locale: ru })}</span>
+              <span className="font-bold">{format(checkOutDate, 'd MMMM, E', { locale: ru })}</span>
               <span className="text-sm">до {item.checkOutTime}</span>
             </div>
           </div>

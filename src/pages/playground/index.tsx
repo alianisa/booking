@@ -1,7 +1,7 @@
 import { ReactNode, useState } from 'react'
 import { Cog6ToothIcon } from '@heroicons/react/24/outline'
 import { cn } from 'shared/lib/utils'
-import { SearchList } from 'widgets/search-list'
+import { SearchList } from 'widgets/hotel-list'
 import { Button } from 'shared/ui/button'
 import { Checkbox } from 'shared/ui/checkbox'
 import {

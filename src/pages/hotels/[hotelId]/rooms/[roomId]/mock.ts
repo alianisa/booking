@@ -2,17 +2,9 @@ export const bookMock = {
   book: {
     hotelName: 'Cosmos Moscow Vdnh',
     hotelAdress: 'Москва, проспект Мира, 150',
-    coords: '55.822276,37.647037',
-    checkInDate: '2023-04-15',
-    checkOutDate: '2023-04-16',
     checkInTime: '14:00',
     checkOutTime: '12:00',
     price: 4028,
-    guests: {
-      adults: 2,
-      childrens: [1, 3, 5, 9, 17],
-      // childrens: [2],
-    },
   },
   room: {
     id: 1,

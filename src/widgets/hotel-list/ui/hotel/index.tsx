@@ -1,15 +1,15 @@
 import { MapIcon, MapPinIcon } from '@heroicons/react/24/outline'
-import { Hotel } from 'pages/playground/mocks'
+import { Hotel as HotelType } from 'pages/playground/mocks'
 import { cn, formatNoun } from 'shared/lib/utils'
 import { Images } from './images'
 
 type Props = {
-  item: Hotel
+  item: HotelType
   nights: number
   variant: 'list' | 'grid'
 }
 
-export const SearchItem = ({ item, nights, variant }: Props) => {
+export const Hotel = ({ item, nights, variant }: Props) => {
   return (
     <div
       key={item.name}

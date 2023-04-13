@@ -3,7 +3,6 @@ export const hotelMock = {
     name: 'Cosmos Moscow Vdnh',
     city: 'Москва',
     adress: 'Москва, проспект Мира, 150',
-    coords: '55.822276,37.647037',
     distanceToCenter: 7.9,
     images: ['/hotel1.webp', '/hotel2.webp', '/hotel3.webp', '/hotel1.webp', '/hotel2.webp', '/hotel3.webp'],
     features: {

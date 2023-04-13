@@ -3,7 +3,6 @@ import { XMarkIcon } from '@heroicons/react/24/outline'
 import * as Dialog from '@radix-ui/react-dialog'
 
 type Item = {
-  id: number
   name: string
   size: number
   beds: string
