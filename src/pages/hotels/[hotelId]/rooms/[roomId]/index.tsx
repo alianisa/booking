@@ -1,6 +1,8 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { Controller, useForm } from 'react-hook-form'
+import { z } from 'zod'
 import { parseQuery } from 'shared/lib'
 import { Button, Input, Textarea } from 'shared/ui'
 import { Booking } from 'widgets'
@@ -14,6 +16,13 @@ const defaultValues = {
   comment: '',
 }
 
+const schema = z.object({
+  firstName: z.string().min(1, { message: 'Обязательное поле' }),
+  secondName: z.string().min(1, { message: 'Обязательное поле' }),
+  email: z.string().min(1, { message: 'Обязательное поле' }).email({ message: 'Неверный email' }),
+  phone: z.string().min(1, { message: 'Обязательное поле' }),
+})
+
 export default function BookingPage() {
   const router = useRouter()
   const query = router.query
@@ -21,6 +30,7 @@ export default function BookingPage() {
 
   const { handleSubmit, control } = useForm({
     defaultValues,
+    resolver: zodResolver(schema),
   })
 
   const onSubmit = (data: any) => {
@@ -48,7 +58,6 @@ export default function BookingPage() {
                   <Controller
                     control={control}
                     name="secondName"
-                    rules={{ required: 'Обязательное поле' }}
                     render={({ field, fieldState }) => (
                       <Input {...field} error={fieldState.error as { message: string } | undefined} label="Фамилия" />
                     )}
@@ -58,7 +67,6 @@ export default function BookingPage() {
                   <Controller
                     control={control}
                     name="firstName"
-                    rules={{ required: 'Обязательное поле' }}
                     render={({ field, fieldState }) => (
                       <Input {...field} error={fieldState.error as { message: string } | undefined} label="Имя" />
                     )}
@@ -70,7 +78,6 @@ export default function BookingPage() {
                   <Controller
                     control={control}
                     name="email"
-                    rules={{ required: 'Обязательное поле' }}
                     render={({ field, fieldState }) => (
                       <Input
                         {...field}
@@ -84,12 +91,12 @@ export default function BookingPage() {
                   <Controller
                     control={control}
                     name="phone"
-                    rules={{ required: 'Обязательное поле' }}
                     render={({ field, fieldState }) => (
                       <Input
                         {...field}
                         error={fieldState.error as { message: string } | undefined}
                         label="Мобильный телефон"
+                        type="number"
                       />
                     )}
                   />
