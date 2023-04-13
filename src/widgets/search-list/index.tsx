@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { ChevronLeftIcon, ChevronRightIcon, ListBulletIcon, Squares2X2Icon } from '@heroicons/react/24/outline'
 import { Hotel } from 'pages/playground/mocks'
 import { cn } from 'shared/lib/utils'
@@ -27,6 +29,8 @@ export const SearchList = ({
   hasPreviousPage,
   className,
 }: Props) => {
+  const router = useRouter()
+  const { city, filters, ...linkParams } = router.query
   const [variant, setVariant] = useState<'list' | 'grid'>('list')
   const [sort, setSort] = useState<'asc' | 'desc'>('asc')
   const sortedItems = items.sort((a, b) => (sort === 'asc' ? a.price - b.price : b.price - a.price))
@@ -61,7 +65,9 @@ export const SearchList = ({
       >
         {!loading &&
           sortedItems.map((item, index) => (
-            <SearchItem item={item} nights={nights} key={item.name + index} variant={variant} />
+            <Link href={{ pathname: `/hotels/${item.id}`, query: linkParams }} className="flex" key={item.name + index}>
+              <SearchItem item={item} nights={nights} variant={variant} />
+            </Link>
           ))}
         {loading && Array.from(Array(10)).map((item, index) => <ItemSkeleton key={index} variant={variant} />)}
       </div>

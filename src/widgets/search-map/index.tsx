@@ -32,6 +32,7 @@ export const SearchMap = ({
 
 const Mark = ({ hotel }: { hotel: Hotel }) => {
   const router = useRouter()
+  const { city, filters, ...linkParams } = router.query
   const ymaps = useYMaps(['templateLayoutFactory'])
   const coords = hotel.coords.split(',').map((coord) => Number(coord))
   const layout = useMemo(() => {
@@ -81,7 +82,10 @@ const Mark = ({ hotel }: { hotel: Hotel }) => {
             'click',
             (e: any) => {
               e.preventDefault()
-              router.push('/hotels/1')
+              router.push({
+                pathname: `/hotels/${hotel.id}`,
+                query: linkParams,
+              })
             },
             this
           )
