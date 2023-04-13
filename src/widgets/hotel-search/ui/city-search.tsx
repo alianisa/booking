@@ -3,6 +3,7 @@ import { autoUpdate, offset, size, useFloating } from '@floating-ui/react-dom'
 import { useCombobox } from 'downshift'
 import { useController } from 'react-hook-form'
 import { cn } from 'shared/lib'
+import useIsomorphicLayoutEffect from 'shared/lib/use-isomorphic-layout-effect'
 import { fetchCities } from 'shared/api'
 import { Input, Tag } from 'shared/ui'
 import { SearchControl } from 'widgets'
@@ -54,7 +55,7 @@ export const CitySearch = ({ control }: Props) => {
     selectedItem: value,
   })
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (isOpen) {
       return autoUpdate(refs.reference.current as any, refs.floating.current as any, update)
     }
