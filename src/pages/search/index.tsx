@@ -10,7 +10,7 @@ export default function SearchPage() {
   const router = useRouter()
   const query = router.query
   const queryValues = parseQuery(query)
-
+  const { city } = query
   return (
     <>
       <Head>
@@ -18,7 +18,7 @@ export default function SearchPage() {
       </Head>
       <div className="mx-auto flex max-w-7xl flex-col py-5">
         <HotelSearch queryValues={queryValues} />
-        <SearchMap hotels={searchListMock} />
+        <SearchMap hotels={searchListMock} city={city as string | undefined} />
         <div className="mt-5 h-[400px] w-full animate-pulse rounded-md bg-gray-200"></div>
         <SearchList
           items={searchListMock}

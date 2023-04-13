@@ -2,22 +2,25 @@ import { useMemo } from 'react'
 import { useRouter } from 'next/router'
 import { Map, Placemark, ZoomControl, useYMaps } from '@pbe/react-yandex-maps'
 import { Hotel } from 'pages/playground/mocks'
+import { useCoords } from 'shared/lib/use-coords'
 
 type Props = {
   hotels: Hotel[]
-  defaultState?: {
-    center: [x: number, y: number]
-    zoom: number
-  }
+  city: string | undefined
 }
 
-export const SearchMap = ({
-  hotels,
-  defaultState = {
-    center: [55.751574, 37.573856],
+const LAYOUT_OFFSET = [
+  [-28, -32],
+  [28, -16],
+]
+
+export const SearchMap = ({ hotels, city }: Props) => {
+  const coords = useCoords(city)
+  if (!coords) return <div className="mt-5 h-[400px] w-full animate-pulse rounded-md bg-gray-200"></div>
+  const defaultState = {
+    center: coords,
     zoom: 10,
-  },
-}: Props) => {
+  }
   return (
     <div className="mt-5 overflow-hidden rounded-md">
       <Map defaultState={defaultState} height={400} width={'100%'}>
@@ -34,7 +37,7 @@ const Mark = ({ hotel }: { hotel: Hotel }) => {
   const router = useRouter()
   const { city, filters, ...linkParams } = router.query
   const ymaps = useYMaps(['templateLayoutFactory'])
-  const coords = hotel.coords.split(',').map((coord) => Number(coord))
+  const coords = useCoords(hotel.adress)
   const layout = useMemo(() => {
     if (!ymaps) return ''
 
@@ -72,10 +75,7 @@ const Mark = ({ hotel }: { hotel: Hotel }) => {
           // @ts-ignore
           this.getData().options.set('shape', {
             type: 'Rectangle',
-            coordinates: [
-              [-28, -32],
-              [28, -16],
-            ],
+            coordinates: LAYOUT_OFFSET,
           })
           // @ts-ignore
           this.getData().geoObject.events.add(
@@ -115,9 +115,10 @@ const Mark = ({ hotel }: { hotel: Hotel }) => {
     return layout
   }, [ymaps])
 
+  if (!coords) return null
   return (
     <Placemark
-      geometry={coords}
+      geometry={coords as number[]}
       options={{
         iconLayout: layout,
       }}
