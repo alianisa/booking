@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { searchListMock } from 'pages/playground/mocks'
+import { searchListMock } from 'pages/search/mocks'
 import { parseQuery } from 'shared/lib/utils'
 import { HotelList } from 'widgets/hotel-list'
 import { HotelSearch } from 'widgets/hotel-search'

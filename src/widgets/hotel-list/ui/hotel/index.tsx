@@ -1,5 +1,5 @@
 import { MapIcon, MapPinIcon } from '@heroicons/react/24/outline'
-import { Hotel as HotelType } from 'pages/playground/mocks'
+import { Hotel as HotelType } from 'pages/search/mocks'
 import { cn, formatNoun } from 'shared/lib/utils'
 import { Images } from './images'
 

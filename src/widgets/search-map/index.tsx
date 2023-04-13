@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import { useRouter } from 'next/router'
 import { Map, Placemark, ZoomControl, useYMaps } from '@pbe/react-yandex-maps'
-import { Hotel } from 'pages/playground/mocks'
+import { Hotel } from 'pages/search/mocks'
 import { useCoords } from 'shared/lib/use-coords'
 
 type Props = {

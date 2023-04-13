@@ -1,7 +1,6 @@
 import { ReactNode, useState } from 'react'
 import { Cog6ToothIcon } from '@heroicons/react/24/outline'
 import { cn } from 'shared/lib/utils'
-import { SearchList } from 'widgets/hotel-list'
 import { Button } from 'shared/ui/button'
 import { Checkbox } from 'shared/ui/checkbox'
 import {
@@ -20,7 +19,6 @@ import { Select } from 'shared/ui/select'
 import { Switch } from 'shared/ui/switch'
 import { Textarea } from 'shared/ui/textarea'
 import { ToggleGroup } from 'shared/ui/toggle-group'
-import { searchListMock } from './mocks'
 
 export default function Playground() {
   const [toggleGroupValue, setToggleGroupValue] = useState('data2')
@@ -31,7 +29,6 @@ export default function Playground() {
     { label: 'value2', value: 'value2' },
     { label: 'value3', value: 'value3' },
   ]
-  const [listLoading, setListLoading] = useState(false)
   return (
     <div className="mx-auto flex max-w-7xl flex-col items-center py-10">
       <Block title="Buttons:">
@@ -294,18 +291,6 @@ export default function Playground() {
             </div>
           </PopoverContent>
         </Popover>
-      </Block>
-      <Block title="SearchList:">
-        <Button onClick={() => setListLoading((loading) => !loading)}>{String(listLoading)}</Button>
-        <SearchList
-          items={searchListMock}
-          nights={2}
-          loading={listLoading}
-          fetchNextPage={console.log}
-          fetchPreviousPage={console.log}
-          hasNextPage={true}
-          hasPreviousPage={false}
-        />
       </Block>
     </div>
   )
