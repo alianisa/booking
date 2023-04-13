@@ -1,6 +1,6 @@
 import { InputHTMLAttributes, forwardRef } from 'react'
 import clsx from 'clsx'
-import { cn } from 'shared/lib/utils'
+import { cn } from 'shared/lib'
 
 type Props = {
   name: string

@@ -1,9 +1,9 @@
 import { ReactNode, useState } from 'react'
 import { Cog6ToothIcon } from '@heroicons/react/24/outline'
-import { cn } from 'shared/lib/utils'
-import { Button } from 'shared/ui/button'
-import { Checkbox } from 'shared/ui/checkbox'
+import { cn } from 'shared/lib'
 import {
+  Button,
+  Checkbox,
   Dialog,
   DialogContent,
   DialogDescription,
@@ -11,14 +11,16 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from 'shared/ui/dialog'
-import { IconButton } from 'shared/ui/icon-button'
-import { Input } from 'shared/ui/input'
-import { Popover, PopoverContent, PopoverTrigger } from 'shared/ui/popover'
-import { Select } from 'shared/ui/select'
-import { Switch } from 'shared/ui/switch'
-import { Textarea } from 'shared/ui/textarea'
-import { ToggleGroup } from 'shared/ui/toggle-group'
+  IconButton,
+  Input,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+  Select,
+  Switch,
+  Textarea,
+  ToggleGroup,
+} from 'shared/ui'
 
 export default function Playground() {
   const [toggleGroupValue, setToggleGroupValue] = useState('data2')

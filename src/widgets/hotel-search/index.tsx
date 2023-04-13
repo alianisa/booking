@@ -1,12 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { Control, useForm } from 'react-hook-form'
-import { serializeQuery } from 'shared/lib/utils'
-import { SearchFilters } from 'widgets/hotel-search/ui/search-filters'
-import { Button } from 'shared/ui/button'
-import { DateRangePicker } from 'shared/ui/date-range-picker'
-import { GuestsSelect } from 'shared/ui/guests-select'
-import { CitySearch } from './ui/city-search'
+import { serializeQuery } from 'shared/lib'
+import { Button, DateRangePicker, GuestsSelect } from 'shared/ui'
+import { CitySearch, SearchFilters } from './ui'
 
 type Props = { queryValues: { [key: string]: any } }
 

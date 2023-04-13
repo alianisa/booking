@@ -3,10 +3,9 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { ChevronLeftIcon, ChevronRightIcon, ListBulletIcon, Squares2X2Icon } from '@heroicons/react/24/outline'
 import { Hotel as HotelType } from 'pages/search/mocks'
-import { cn } from 'shared/lib/utils'
-import { Button } from 'shared/ui/button'
-import { ToggleGroup } from 'shared/ui/toggle-group'
-import { Hotel, ItemSkeleton } from './ui'
+import { cn } from 'shared/lib'
+import { Button, ToggleGroup } from 'shared/ui'
+import { Hotel, HotelSkeleton } from './ui'
 
 type Props = {
   items: HotelType[]
@@ -73,7 +72,7 @@ export const HotelList = ({
               <Hotel item={hotel} nights={nights} variant={variant} />
             </Link>
           ))}
-        {loading && Array.from(Array(10)).map((item, index) => <ItemSkeleton key={index} variant={variant} />)}
+        {loading && Array.from(Array(10)).map((item, index) => <HotelSkeleton key={index} variant={variant} />)}
       </div>
       <div className="flex w-full justify-between gap-4">
         <Button variant="secondary" disabled={!hasPreviousPage || loading} onClick={fetchPreviousPage}>

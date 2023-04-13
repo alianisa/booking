@@ -3,7 +3,6 @@ import { XMarkIcon } from '@heroicons/react/24/outline'
 import * as Dialog from '@radix-ui/react-dialog'
 
 type Item = {
-  id: number
   name: string
   size: number
   beds: string
@@ -21,7 +20,7 @@ type Props = {
   onOpenChange: (open: boolean) => void
 }
 
-export const About = ({ item, open, onOpenChange }: Props) => {
+export const ModalAbout = ({ item, open, onOpenChange }: Props) => {
   const features = Object.entries(item.features)
 
   return (

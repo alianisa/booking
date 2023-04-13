@@ -1,5 +1,5 @@
 import { XMarkIcon } from '@heroicons/react/24/outline'
-import { formatNoun } from 'shared/lib/utils'
+import { formatNoun } from 'shared/lib'
 
 type ChildrenSelectorProps = {
   value: number[]

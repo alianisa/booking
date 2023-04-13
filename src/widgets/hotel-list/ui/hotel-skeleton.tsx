@@ -1,10 +1,10 @@
-import { cn } from 'shared/lib/utils'
+import { cn } from 'shared/lib'
 
 type Props = {
   variant: 'list' | 'grid'
 }
 
-export const ItemSkeleton = ({ variant }: Props) => {
+export const HotelSkeleton = ({ variant }: Props) => {
   return (
     <div
       className={cn(

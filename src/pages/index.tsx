@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { Button } from 'shared/ui/button'
+import { Button } from 'shared/ui'
 
 export default function IndexPage() {
   return (

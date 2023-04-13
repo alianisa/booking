@@ -2,9 +2,8 @@ import { useEffect, useState } from 'react'
 import { AdjustmentsHorizontalIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import * as Dialog from '@radix-ui/react-dialog'
 import { Controller } from 'react-hook-form'
-import { SearchControl } from 'widgets/hotel-search'
-import { Checkbox } from 'shared/ui/checkbox'
-import { Button } from '../../../shared/ui/button'
+import { Button, Checkbox } from 'shared/ui'
+import { SearchControl } from 'widgets'
 
 const LABELS_MAP = {
   hasWifi: 'Wi-Fi',

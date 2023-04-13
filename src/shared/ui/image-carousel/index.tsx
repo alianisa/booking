@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline'
 import { Navigation, Pagination } from 'swiper'
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/react'
-import { cn } from 'shared/lib/utils'
+import { cn } from 'shared/lib'
 
 type Props = {
   images: string[]

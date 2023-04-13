@@ -1,6 +1,6 @@
 import * as RadixSwitch from '@radix-ui/react-switch'
 import clsx from 'clsx'
-import { cn } from 'shared/lib/utils'
+import { cn } from 'shared/lib'
 
 type Props = {
   name: string

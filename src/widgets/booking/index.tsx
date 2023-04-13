@@ -2,11 +2,9 @@ import { useState } from 'react'
 import { MapPinIcon } from '@heroicons/react/24/outline'
 import { differenceInCalendarDays, format } from 'date-fns'
 import { ru } from 'date-fns/locale'
-import { formatNoun } from 'shared/lib/utils'
-import { ModalImages } from 'widgets/modal-images'
-import { Button } from 'shared/ui/button'
-import { About } from './about'
-import { Images } from './images'
+import { formatNoun } from 'shared/lib'
+import { ModalAbout, ModalImages } from 'shared/ui'
+import { Images } from './ui'
 
 type Item = {
   hotelName: string
@@ -109,7 +107,7 @@ export const Booking = ({ item, checkInDate, checkOutDate, guests }: Props) => {
         </div>
       </div>
       <ModalImages open={showModalImages} onOpenChange={setShowModalImages} images={item.images} title="Фотографии" />
-      <About item={item} open={showModalAbout} onOpenChange={setShowModalAbout} />
+      <ModalAbout item={item} open={showModalAbout} onOpenChange={setShowModalAbout} />
     </>
   )
 }

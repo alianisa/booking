@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import * as DialogPrimitive from '@radix-ui/react-dialog'
-import { cn } from 'shared/lib/utils'
+import { cn } from 'shared/lib'
 
 const Dialog = DialogPrimitive.Root
 

@@ -1,11 +1,9 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { Controller, useForm } from 'react-hook-form'
-import { parseQuery } from 'shared/lib/utils'
-import { Booking } from 'widgets/booking'
-import { Button } from 'shared/ui/button'
-import { Input } from 'shared/ui/input'
-import { Textarea } from 'shared/ui/textarea'
+import { parseQuery } from 'shared/lib'
+import { Button, Input, Textarea } from 'shared/ui'
+import { Booking } from 'widgets'
 import { bookMock } from './mock'
 
 const defaultValues = {

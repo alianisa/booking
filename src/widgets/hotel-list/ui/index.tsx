@@ -1,2 +1,2 @@
 export * from './hotel'
-export * from './item-skeleton'
+export * from './hotel-skeleton'

@@ -1,8 +1,7 @@
 import { ChevronDownIcon } from '@heroicons/react/24/outline'
 import { useController } from 'react-hook-form'
-import { formatNoun } from 'shared/lib/utils'
-import { Button } from 'shared/ui/button'
-import { Popover, PopoverContent, PopoverTrigger } from 'shared/ui/popover'
+import { formatNoun } from 'shared/lib'
+import { Button, Popover, PopoverContent, PopoverTrigger } from 'shared/ui'
 import { AdultsSelector } from './adults-selector'
 import { ChildrenSelector } from './children-selector'
 

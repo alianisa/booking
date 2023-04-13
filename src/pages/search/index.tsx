@@ -1,10 +1,8 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { searchListMock } from 'pages/search/mocks'
-import { parseQuery } from 'shared/lib/utils'
-import { HotelList } from 'widgets/hotel-list'
-import { HotelSearch } from 'widgets/hotel-search'
-import { SearchMap } from 'widgets/search-map'
+import { parseQuery } from 'shared/lib'
+import { HotelList, HotelSearch, SearchMap } from 'widgets'
 
 export default function SearchPage() {
   const router = useRouter()

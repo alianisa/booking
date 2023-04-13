@@ -3,9 +3,8 @@ import { format, isSaturday, nextSaturday, nextSunday } from 'date-fns'
 import { ru } from 'date-fns/locale'
 import DatePicker from 'react-datepicker'
 import { useController } from 'react-hook-form'
-import { capitalize } from 'shared/lib/utils'
-import { Tag } from 'widgets/hotel-search/ui/tag'
-import { IconButton } from 'shared/ui/icon-button'
+import { capitalize } from 'shared/lib'
+import { IconButton, Tag } from 'shared/ui'
 import { ButtonInput } from './button-input'
 
 export type NullableDate = Date | null

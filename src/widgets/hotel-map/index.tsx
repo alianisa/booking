@@ -1,6 +1,6 @@
 import React from 'react'
 import { FullscreenControl, Map, Placemark, ZoomControl } from '@pbe/react-yandex-maps'
-import { cn } from 'shared/lib/utils'
+import { cn } from 'shared/lib'
 
 type Props = {
   coords: [number, number] | null

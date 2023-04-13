@@ -1,5 +1,4 @@
-import { SiteFooter } from './site-footer'
-import { SiteHeader } from './site-header'
+import { Footer, Header } from './ui'
 
 interface LayoutProps {
   children: React.ReactNode
@@ -8,9 +7,9 @@ interface LayoutProps {
 export function Layout({ children }: LayoutProps) {
   return (
     <div className="flex min-h-screen flex-col">
-      <SiteHeader />
+      <Header />
       <main className="container flex-1">{children}</main>
-      <SiteFooter />
+      <Footer />
     </div>
   )
 }

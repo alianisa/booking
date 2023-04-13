@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ModalImages } from 'widgets/modal-images'
+import { ModalImages } from 'shared/ui'
 
 type Props = {
   images: string[]

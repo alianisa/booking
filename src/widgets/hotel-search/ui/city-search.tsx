@@ -2,11 +2,10 @@ import { useLayoutEffect, useState } from 'react'
 import { autoUpdate, offset, size, useFloating } from '@floating-ui/react-dom'
 import { useCombobox } from 'downshift'
 import { useController } from 'react-hook-form'
+import { cn } from 'shared/lib'
 import { fetchCities } from 'shared/api'
-import { cn } from 'shared/lib/utils'
-import { SearchControl } from 'widgets/hotel-search'
-import { Input } from 'shared/ui/input'
-import { Tag } from './tag'
+import { Input, Tag } from 'shared/ui'
+import { SearchControl } from 'widgets'
 
 type Props = {
   control: SearchControl

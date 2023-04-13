@@ -1,5 +1,5 @@
-import { cn } from 'shared/lib/utils'
-import { ItemSkeleton, Room } from './ui'
+import { cn } from 'shared/lib'
+import { Room, RoomSkeleton } from './ui'
 
 type Props = {
   items: any[]
@@ -13,7 +13,7 @@ export const RoomList = ({ items, nights, loading, className }: Props) => {
     <div className={cn('mt-5 flex w-full flex-col gap-5', className)}>
       <div className="flex flex-col gap-4">
         {!loading && items.map((item, index) => <Room room={item} nights={nights} key={item.name + index} />)}
-        {/* {loading && Array.from(Array(10)).map((item, index) => <ItemSkeleton key={index} />)} */}
+        {/* {loading && Array.from(Array(10)).map((item, index) => <RoomSkeleton key={index} />)} */}
       </div>
     </div>
   )

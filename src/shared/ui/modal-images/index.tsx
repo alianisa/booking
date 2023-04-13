@@ -1,7 +1,7 @@
 import React from 'react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import * as Dialog from '@radix-ui/react-dialog'
-import { ImageCarousel } from 'shared/ui/image-carousel'
+import { ImageCarousel } from 'shared/ui'
 
 type Props = {
   open: boolean

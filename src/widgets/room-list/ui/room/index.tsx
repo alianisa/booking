@@ -1,10 +1,8 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { formatNoun } from 'shared/lib/utils'
-import { ModalImages } from 'widgets/modal-images'
-import { Button } from 'shared/ui/button'
-import { About } from './about'
+import { formatNoun } from 'shared/lib'
+import { Button, ModalAbout, ModalImages } from 'shared/ui'
 import { Images } from './images'
 
 type Room = {
@@ -28,7 +26,6 @@ type Props = {
 export const Room = ({ room, nights }: Props) => {
   const router = useRouter()
   const { hotelId, ...linkParams } = router.query
-  console.log(linkParams)
   const [showModalImages, setShowModalImages] = useState(false)
   const [showModalAbout, setShowModalAbout] = useState(false)
   const features = Object.values(room.features).flat()
@@ -74,7 +71,7 @@ export const Room = ({ room, nights }: Props) => {
         </div>
       </div>
       <ModalImages open={showModalImages} onOpenChange={setShowModalImages} images={room.images} title="Фотографии" />
-      <About item={room} open={showModalAbout} onOpenChange={setShowModalAbout} />
+      <ModalAbout item={room} open={showModalAbout} onOpenChange={setShowModalAbout} />
     </>
   )
 }

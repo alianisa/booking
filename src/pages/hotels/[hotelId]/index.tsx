@@ -1,12 +1,8 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { MapIcon, MapPinIcon } from '@heroicons/react/24/outline'
-import { useCoords } from 'shared/lib/use-coords'
-import { parseQuery } from 'shared/lib/utils'
-import { HotelImages } from 'widgets/hotel-images'
-import { HotelMap } from 'widgets/hotel-map'
-import { RoomList } from 'widgets/room-list'
-import { RoomSearch } from 'widgets/room-search'
+import { parseQuery, useCoords } from 'shared/lib'
+import { HotelImages, HotelMap, RoomList, RoomSearch } from 'widgets'
 import { hotelMock } from './mock'
 
 export default function HotelPage() {

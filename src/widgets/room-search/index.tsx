@@ -1,10 +1,8 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
-import { serializeQuery } from 'shared/lib/utils'
-import { Button } from 'shared/ui/button'
-import { DateRangePicker } from 'shared/ui/date-range-picker'
-import { GuestsSelect } from 'shared/ui/guests-select'
+import { serializeQuery } from 'shared/lib'
+import { Button, DateRangePicker, GuestsSelect } from 'shared/ui'
 
 type Props = { queryValues: { [key: string]: any } }
 

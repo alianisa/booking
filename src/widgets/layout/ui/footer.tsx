@@ -1,4 +1,4 @@
-export const SiteFooter = () => {
+export const Footer = () => {
   return (
     <footer className="container">
       <div className="flex  flex-col items-center justify-between gap-4 border-t border-t-slate-200 py-10 md:h-24 md:flex-row md:py-0">

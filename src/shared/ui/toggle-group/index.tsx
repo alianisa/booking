@@ -1,6 +1,6 @@
 import React from 'react'
 import clsx from 'clsx'
-import { cn } from 'shared/lib/utils'
+import { cn } from 'shared/lib'
 import { Button } from '../button'
 import { IconButton } from '../icon-button'
 
