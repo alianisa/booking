@@ -3,7 +3,6 @@ import { useController } from 'react-hook-form'
 import { formatNoun } from 'shared/lib'
 import { Button, Popover, PopoverContent, PopoverTrigger } from 'shared/ui'
 import { AdultsSelector } from './adults-selector'
-import { ChildrenSelector } from './children-selector'
 
 type Props = {
   control: any
@@ -13,28 +12,24 @@ export const GuestsSelect = ({ control }: Props) => {
   const {
     field: { value, onChange },
   } = useController({
-    name: 'guests',
+    name: 'persons',
     control,
   })
-  const guestsCount = value.adults + value.childrenAges.length
+
   return (
     <div className="flex-1">
       <Popover>
         <PopoverTrigger asChild>
           <Button variant="secondary" className="group" full>
             <div className="flex w-full flex-nowrap items-center justify-between gap-2 whitespace-nowrap text-gray-900">
-              {formatNoun({ number: guestsCount, words: ['гость', 'гостя', 'гостей'] })}
+              {formatNoun({ number: value, words: ['гость', 'гостя', 'гостей'] })}
               <ChevronDownIcon className="ml-auto h-5 w-5 group-data-[state=open]:rotate-180" />
             </div>
           </Button>
         </PopoverTrigger>
         <PopoverContent className="w-72">
           <div className="flex flex-col gap-2">
-            <AdultsSelector value={value.adults} onChange={(adults) => onChange({ ...value, adults: adults })} />
-            <ChildrenSelector
-              value={value.childrenAges}
-              onChange={(childrenAges) => onChange({ ...value, childrenAges: childrenAges })}
-            />
+            <AdultsSelector value={value} onChange={(value) => onChange(value)} />
           </div>
         </PopoverContent>
       </Popover>

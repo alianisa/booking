@@ -10,8 +10,7 @@ export const AdultsSelector = ({ value, onChange }: AdultsSelectorProps) => {
   return (
     <div className="flex items-center justify-between gap-2">
       <div className="flex flex-col">
-        <p>Взрослые</p>
-        <p className="text-sm text-gray-500">от 18 лет</p>
+        <p className="font-semibold">Количество гостей</p>
       </div>
       <div className="flex items-center gap-4">
         <IconButton

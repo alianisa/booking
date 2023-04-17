@@ -11,7 +11,7 @@ const defaultValues = {
   city: '',
   checkInDate: null,
   checkOutDate: null,
-  guests: { adults: 2, childrenAges: [] },
+  persons: 2,
   filters: {
     hasWifi: false,
     hasAirConditioner: false,

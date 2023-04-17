@@ -26,7 +26,7 @@ const schema = z.object({
 export default function BookingPage() {
   const router = useRouter()
   const query = router.query
-  const { checkInDate, checkOutDate, guests } = parseQuery(query)
+  const { checkInDate, checkOutDate, persons } = parseQuery(query)
 
   const { handleSubmit, control } = useForm({
     defaultValues,
@@ -46,7 +46,7 @@ export default function BookingPage() {
         <Booking
           checkInDate={checkInDate}
           checkOutDate={checkOutDate}
-          guests={guests}
+          persons={persons}
           item={{ ...bookMock.book, ...bookMock.room }}
         />
         <form onSubmit={handleSubmit(onSubmit)}>

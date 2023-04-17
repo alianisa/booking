@@ -26,44 +26,30 @@ type Props = {
   item: Item
   checkInDate: Date
   checkOutDate: Date
-  guests: {
-    adults: number
-    childrenAges: number[]
-  }
+  persons: number
 }
-const formatDescription = (adults: number, childrenAges: number[], nights: number) => {
-  const adultsPart = `для ${formatNoun({
-    number: adults,
-    words: ['взрослого', 'взрослых', 'взрослых'],
-  })}`
 
-  const childrenAgesPart =
-    childrenAges.length > 0
-      ? `и ${childrenAges.length} ${childrenAges.length > 1 ? 'детей' : 'ребенка'}: ${childrenAges.map(
-          (age) =>
-            ' ' +
-            formatNoun({
-              number: age,
-              words: ['год', 'года', 'лет'],
-            })
-        )}`
-      : ''
+const formatDescription = (persons: number, nights: number) => {
+  const personsPart = `для ${formatNoun({
+    number: persons,
+    words: ['гость', 'гостя', 'гостей'],
+  })}`
 
   const nigtsPart = `на ${formatNoun({
     number: nights,
     words: ['ночь', 'ночи', 'ночей'],
   })}`
 
-  return `${adultsPart} ${childrenAgesPart} ${nigtsPart}`
+  return `${personsPart} ${nigtsPart}`
 }
 
-export const Booking = ({ item, checkInDate, checkOutDate, guests }: Props) => {
+export const Booking = ({ item, checkInDate, checkOutDate, persons }: Props) => {
   const [showModalImages, setShowModalImages] = useState(false)
   const [showModalAbout, setShowModalAbout] = useState(false)
   const nights = differenceInCalendarDays(checkOutDate, checkInDate)
   if (!checkInDate) return null
   if (!checkOutDate) return null
-  if (!guests) return null
+  if (!persons) return null
   return (
     <>
       <div
@@ -86,7 +72,7 @@ export const Booking = ({ item, checkInDate, checkOutDate, guests }: Props) => {
                 &nbsp;·&nbsp;{item.size} м<sup>2</sup>
               </span>
             </span>
-            <span>{formatDescription(guests.adults, guests.childrenAges, nights)}</span>
+            <span>{formatDescription(persons, nights)}</span>
             <p className="mt-1 cursor-pointer text-blue-700 hover:text-red-500" onClick={() => setShowModalAbout(true)}>
               Подробнее о номере
             </p>

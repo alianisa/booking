@@ -9,7 +9,7 @@ type Props = { queryValues: { [key: string]: any } }
 const defaultValues = {
   checkInDate: null,
   checkOutDate: null,
-  guests: { adults: 2, childrenAges: [] },
+  persons: 2,
 }
 
 export const RoomSearch = ({ queryValues }: Props) => {
