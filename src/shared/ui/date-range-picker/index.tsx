@@ -83,6 +83,7 @@ export const DateRangePicker = ({ control }: Props) => {
               </span>
               <div className="flex gap-2">
                 <IconButton
+                  type="button"
                   size="sm"
                   variant="secondary"
                   onClick={decreaseMonth}
@@ -91,6 +92,7 @@ export const DateRangePicker = ({ control }: Props) => {
                 />
 
                 <IconButton
+                  type="button"
                   size="sm"
                   variant="secondary"
                   onClick={increaseMonth}
