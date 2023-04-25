@@ -13,15 +13,11 @@ import {
 
 const navItems = [
   {
-    title: 'Home',
+    title: 'Главная',
     href: '/',
   },
   {
-    title: 'Playground',
-    href: '/playground',
-  },
-  {
-    title: 'Search',
+    title: 'Поиск',
     href: '/search',
   },
 ]

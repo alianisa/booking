@@ -16,7 +16,7 @@ export default function HotelPage() {
   return (
     <>
       <Head>
-        <title>Booking hotel name</title>
+        <title>{hotel.name}</title>
       </Head>
       <div className="mx-auto flex max-w-7xl flex-col py-5">
         <div className="flex flex-col gap-2">

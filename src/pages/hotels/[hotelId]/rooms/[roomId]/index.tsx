@@ -37,10 +37,12 @@ export default function BookingPage() {
     console.log('data', data)
   }
 
+  const title = `Бронирование ${bookMock.book.hotelName}`
+
   return (
     <>
       <Head>
-        <title>Booking search</title>
+        <title>{title}</title>
       </Head>
       <div className="mx-auto flex max-w-7xl flex-col py-5">
         <Booking
