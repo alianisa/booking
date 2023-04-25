@@ -26,7 +26,7 @@ export const Navbar = () => {
     <div className="flex gap-6 md:gap-10">
       <Link href="/" className="hidden items-center space-x-2 md:flex">
         <Icons.logo className="h-6 w-6" />
-        <span className="hidden font-bold sm:inline-block">Booking</span>
+        <span className="hidden font-bold sm:inline-block">Staymate</span>
       </Link>
       {navItems?.length ? (
         <nav className="hidden gap-6 md:flex">
