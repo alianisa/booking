@@ -1,9 +1,11 @@
 import Head from 'next/head'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { ChevronRightIcon } from '@heroicons/react/24/outline'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Controller, useForm } from 'react-hook-form'
 import { z } from 'zod'
-import { parseQuery } from 'shared/lib'
+import { parseQuery, serializeQuery } from 'shared/lib'
 import { Button, Input, Textarea } from 'shared/ui'
 import { Booking } from 'widgets'
 import { bookMock } from './mock'
@@ -45,6 +47,46 @@ export default function BookingPage() {
         <title>{title}</title>
       </Head>
       <div className="mx-auto flex max-w-7xl flex-col py-5">
+        <div className="mb-2 flex flex-wrap items-center gap-2">
+          <div className="flex items-center gap-2">
+            <Link
+              className="inline-flex w-fit cursor-pointer items-center gap-1 hover:text-red-500"
+              href={{
+                pathname: '/search',
+                query: {
+                  ...serializeQuery({
+                    city: bookMock.book.city,
+                    checkInDate: checkInDate,
+                    checkOutDate: checkOutDate,
+                    persons: persons,
+                  }),
+                },
+              }}
+            >
+              <p className="text-lg">Гостиницы</p>
+            </Link>
+            <ChevronRightIcon className="h-5 w-5" />
+          </div>
+          <div className="flex items-center gap-2">
+            <Link
+              className="inline-flex w-fit cursor-pointer items-center gap-1 hover:text-red-500"
+              href={{
+                pathname: `/hotels/${bookMock.book.hotelId}`,
+                query: {
+                  ...serializeQuery({
+                    checkInDate: checkInDate,
+                    checkOutDate: checkOutDate,
+                    persons: persons,
+                  }),
+                },
+              }}
+            >
+              <p className="text-lg">{bookMock.book.hotelName}</p>
+            </Link>
+            <ChevronRightIcon className="h-5 w-5" />
+          </div>
+          <p className="cursor-default text-lg">Бронирование</p>
+        </div>
         <Booking
           checkInDate={checkInDate}
           checkOutDate={checkOutDate}

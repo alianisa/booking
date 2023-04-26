@@ -1,7 +1,8 @@
 import Head from 'next/head'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { MapIcon, MapPinIcon } from '@heroicons/react/24/outline'
-import { parseQuery, useCoords } from 'shared/lib'
+import { ChevronLeftIcon, MapIcon, MapPinIcon } from '@heroicons/react/24/outline'
+import { parseQuery, serializeQuery, useCoords } from 'shared/lib'
 import { HotelImages, HotelMap, RoomList, RoomSearch } from 'widgets'
 import { hotelMock } from './mock'
 
@@ -19,6 +20,23 @@ export default function HotelPage() {
         <title>{hotel.name}</title>
       </Head>
       <div className="mx-auto flex max-w-7xl flex-col py-5">
+        <Link
+          className="mb-2 inline-flex w-fit cursor-pointer items-center gap-1 hover:text-red-500"
+          href={{
+            pathname: '/search',
+            query: {
+              ...serializeQuery({
+                city: hotel.city,
+                checkInDate: queryValues.checkInDate,
+                checkOutDate: queryValues.checkOutDate,
+                persons: queryValues.persons,
+              }),
+            },
+          }}
+        >
+          <ChevronLeftIcon className="h-5 w-5" />
+          <p className="text-lg">Гостиницы</p>
+        </Link>
         <div className="flex flex-col gap-2">
           <h2 className="text-3xl font-bold">{hotel.name}</h2>
           <div className="flex flex-col text-lg">
