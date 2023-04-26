@@ -28,6 +28,7 @@ const schema = z.object({
 export default function BookingPage() {
   const router = useRouter()
   const query = router.query
+  const { hotelId } = query
   const { checkInDate, checkOutDate, persons } = parseQuery(query)
 
   const { handleSubmit, control } = useForm({
@@ -71,7 +72,7 @@ export default function BookingPage() {
             <Link
               className="inline-flex w-fit cursor-pointer items-center gap-1 hover:text-red-500"
               href={{
-                pathname: `/hotels/${bookMock.book.hotelId}`,
+                pathname: `/hotels/${hotelId}`,
                 query: {
                   ...serializeQuery({
                     checkInDate: checkInDate,

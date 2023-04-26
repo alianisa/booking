@@ -1,7 +1,6 @@
 export const bookMock = {
   book: {
     hotelName: 'Cosmos Moscow Vdnh',
-    hotelId: 1,
     city: 'Москва',
     hotelAdress: 'Москва, проспект Мира, 150',
     checkInTime: '14:00',
