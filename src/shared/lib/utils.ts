@@ -1,5 +1,6 @@
 import { ClassValue, clsx } from 'clsx'
 import { format } from 'date-fns'
+import { isSaturday, nextSaturday, nextSunday } from 'date-fns'
 import { twMerge } from 'tailwind-merge'
 
 export function cn(...inputs: ClassValue[]) {
@@ -58,4 +59,12 @@ export const serializeQuery = (formValues: { [key: string]: any }) => {
   }
 
   return serializedQuery
+}
+
+const today = new Date()
+
+export const getHolidays = () => {
+  const saturday = isSaturday(today) ? today : nextSaturday(today)
+  const sunday = nextSunday(today)
+  return { saturday, sunday } as const
 }

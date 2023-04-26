@@ -16,10 +16,10 @@ const navItems = [
     title: 'Главная',
     href: '/',
   },
-  {
-    title: 'Поиск',
-    href: '/search',
-  },
+  // {
+  //   title: 'Поиск',
+  //   href: '/search',
+  // },
 ]
 export const Navbar = () => {
   return (

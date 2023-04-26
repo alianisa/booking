@@ -34,8 +34,8 @@ export default function HotelPage() {
         </div>
         <div className="mt-5 flex flex-col gap-2 md:h-[300px] md:flex-row">
           <HotelImages images={hotel.images} />
-          {/* <HotelMap coords={coords} height={300} className="h-[200px] md:h-[300px]" /> */}
-          <div className="h-[300px] animate-pulse rounded-md bg-gray-200 md:basis-1/4"></div>
+          <HotelMap coords={coords} height={300} className="h-[200px] md:h-[300px]" />
+          {/* <div className="h-[300px] animate-pulse rounded-md bg-gray-200 md:basis-1/4"></div> */}
         </div>
         <div className="mt-5">
           <p className="mb-2 text-xl font-semibold">Доступные номера</p>
@@ -44,8 +44,8 @@ export default function HotelPage() {
         </div>
         <div className="mt-5">
           <p className="mb-2 text-xl font-semibold">Расположение</p>
-          {/* <HotelMap coords={coords} height={400} className="h-[400px]" /> */}
-          <div className="h-[400px] animate-pulse rounded-md bg-gray-200 md:basis-1/4"></div>
+          <HotelMap coords={coords} height={400} className="h-[400px]" />
+          {/* <div className="h-[400px] animate-pulse rounded-md bg-gray-200 md:basis-1/4"></div> */}
         </div>
         <div className="mt-5">
           <p className="mb-2 text-xl font-semibold">Про отель</p>

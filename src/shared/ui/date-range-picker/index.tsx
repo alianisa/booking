@@ -1,9 +1,9 @@
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid'
-import { format, isSaturday, nextSaturday, nextSunday } from 'date-fns'
+import { format } from 'date-fns'
 import { ru } from 'date-fns/locale'
 import DatePicker from 'react-datepicker'
 import { useController } from 'react-hook-form'
-import { capitalize } from 'shared/lib'
+import { capitalize, getHolidays } from 'shared/lib'
 import { IconButton, Tag } from 'shared/ui'
 import { ButtonInput } from './button-input'
 
@@ -41,8 +41,7 @@ export const DateRangePicker = ({ control }: Props) => {
   }
 
   const setHolidays = () => {
-    const saturday = isSaturday(today) ? today : nextSaturday(today)
-    const sunday = nextSunday(today)
+    const { saturday, sunday } = getHolidays()
     onChange([saturday, sunday])
   }
 

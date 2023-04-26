@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react'
-import { useRouter } from 'next/router'
 import { Control, useForm } from 'react-hook-form'
-import { serializeQuery } from 'shared/lib'
 import { Button, DateRangePicker, GuestsSelect } from 'shared/ui'
 import { CitySearch, SearchFilters } from './ui'
 
-type Props = { queryValues: { [key: string]: any } }
+type Props = { queryValues: { [key: string]: any }; filters?: boolean; onSubmit: (data: any) => void }
 
 const defaultValues = {
   city: '',
@@ -33,18 +31,11 @@ const defaultValues = {
 
 export type SearchControl = Control<typeof defaultValues>
 
-export const HotelSearch = ({ queryValues }: Props) => {
-  const router = useRouter()
+export const HotelSearch = ({ queryValues, filters = true, onSubmit }: Props) => {
   const { handleSubmit, control, setValue, reset } = useForm({
     defaultValues,
   })
   const [filtersCount, setFiltersCount] = useState(0)
-
-  const onSubmit = (data: any) => {
-    const serializedQuery = serializeQuery(data)
-    router.push({ query: { ...serializedQuery } })
-    console.log(data)
-  }
 
   useEffect(() => {
     const initialValue = { ...defaultValues, ...queryValues }
@@ -56,13 +47,15 @@ export const HotelSearch = ({ queryValues }: Props) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} id="search-form">
       <div className="flex flex-col gap-4">
-        <div className="md:flex md:justify-end">
-          <SearchFilters
-            control={control}
-            onReset={() => setValue('filters', defaultValues.filters)}
-            filtersCount={filtersCount}
-          />
-        </div>
+        {filters && (
+          <div className="md:flex md:justify-end">
+            <SearchFilters
+              control={control}
+              onReset={() => setValue('filters', defaultValues.filters)}
+              filtersCount={filtersCount}
+            />
+          </div>
+        )}
         <div className="flex flex-col gap-4 md:flex-row">
           <div className="flex flex-1 flex-wrap gap-4 md:flex-nowrap">
             <CitySearch control={control} />
