@@ -35,7 +35,7 @@ export default function IndexPage() {
           </h1>
         </div>
         <HotelSearch queryValues={{}} filters={false} onSubmit={onSubmit} />
-        <div className="mt-10 flex flex-col items-start gap-2">
+        <div className="flex flex-col items-start gap-2 md:mt-5">
           <p className="text-2xl">Популярные направления</p>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {popularPlaces.map(({ city, img }) => (
