@@ -20,7 +20,6 @@ const LABELS_MAP = {
   beachClose: 'Пляж рядом',
   skiSlopeClose: 'Горнолыжный склон рядом',
   airportClose: 'Аэропорт рядом',
-  animalsAllowed: 'Можно с животными',
 } as const
 
 const AMENITIES_FILTERS = [
