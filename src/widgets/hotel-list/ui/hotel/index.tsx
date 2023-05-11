@@ -1,5 +1,5 @@
 import { MapIcon, MapPinIcon } from '@heroicons/react/24/outline'
-import { Hotel as HotelType } from 'pages/search/mocks'
+import { Hotel as HotelType } from 'shared/types'
 import { cn, formatNoun } from 'shared/lib'
 import { Images } from './images'
 
@@ -10,6 +10,7 @@ type Props = {
 }
 
 export const Hotel = ({ item, nights, variant }: Props) => {
+  const facilities = item.facilities['Удобства Отеля']
   return (
     <div
       key={item.name}
@@ -44,7 +45,7 @@ export const Hotel = ({ item, nights, variant }: Props) => {
                 variant === 'grid' && 'max-h-12 basis-full'
               )}
             >
-              {item.features.map((feature) => (
+              {facilities.map((feature) => (
                 <p key={feature}>
                   {feature}
                   <span>&nbsp;·</span>

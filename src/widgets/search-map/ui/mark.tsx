@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import { useRouter } from 'next/router'
 import { Placemark, useYMaps } from '@pbe/react-yandex-maps'
-import { Hotel } from 'pages/search/mocks'
+import { Hotel } from 'shared/types'
 import { useCoords } from 'shared/lib'
 
 const LAYOUT_OFFSET = [

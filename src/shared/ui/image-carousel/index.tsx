@@ -12,6 +12,7 @@ export const ImageCarousel = ({ images }: Props) => {
   const [realIndex, setRealIndex] = useState(0)
   return (
     <Swiper
+      resistanceRatio={0}
       modules={[Navigation, Pagination]}
       onRealIndexChange={(swiper) => setRealIndex(swiper.realIndex)}
       pagination={{

@@ -1,24 +1,29 @@
+import { GetServerSidePropsContext } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { format } from 'date-fns'
-import { searchListMock } from 'pages/search/mocks'
+import { differenceInCalendarDays, format } from 'date-fns'
+import { Hotel } from 'shared/types'
 import { parseQuery, serializeQuery } from 'shared/lib'
 import { HotelList, HotelSearch, SearchMap } from 'widgets'
 
-export default function SearchPage() {
+type Props = {
+  hotels: Hotel[]
+  query: any
+}
+
+export default function SearchPage({ hotels, query }: Props) {
+  // console.log('hotels', hotels, query)
   const router = useRouter()
-  const query = router.query
   const queryValues = parseQuery(query)
   const { city, checkInDate, checkOutDate } = queryValues
   const title =
     city && checkInDate && checkOutDate
       ? `${city}, ${format(checkInDate, 'dd.MM')} - ${format(checkOutDate, 'dd.MM')}`
       : 'Поиск отелей'
-
+  const nights = differenceInCalendarDays(checkOutDate, checkInDate)
   const onSubmit = (data: any) => {
     const serializedQuery = serializeQuery(data)
     router.push({ query: { ...serializedQuery } })
-    console.log(data)
   }
   return (
     <>
@@ -27,18 +32,16 @@ export default function SearchPage() {
       </Head>
       <div className="mx-auto flex max-w-7xl flex-col py-5">
         <HotelSearch queryValues={queryValues} onSubmit={onSubmit} />
-        <SearchMap hotels={searchListMock} city={city as string | undefined} />
-        {/* <div className="mt-5 h-[400px] w-full animate-pulse rounded-md bg-gray-200"></div> */}
-        <HotelList
-          items={searchListMock}
-          nights={2}
-          loading={false}
-          fetchNextPage={console.log}
-          fetchPreviousPage={console.log}
-          hasNextPage={true}
-          hasPreviousPage={false}
-        />
+        <SearchMap hotels={hotels} city={city as string | undefined} />
+        <HotelList items={hotels} nights={nights} />
       </div>
     </>
   )
+}
+
+export async function getServerSideProps({ resolvedUrl, query }: GetServerSidePropsContext) {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API}${resolvedUrl}`)
+  const hotels = await res.json()
+
+  return { props: { hotels, query } }
 }

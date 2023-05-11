@@ -13,6 +13,7 @@ export const Images = ({ images, variant }: Props) => {
   const [realIndex, setRealIndex] = useState(0)
   return (
     <Swiper
+      resistanceRatio={0}
       modules={[Navigation, Pagination]}
       onRealIndexChange={(swiper) => setRealIndex(swiper.realIndex)}
       pagination={{
@@ -29,7 +30,11 @@ export const Images = ({ images, variant }: Props) => {
       {images.map((image, index) => (
         <SwiperSlide key={image + index} className="h-auto">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={image} className="h-full w-full select-none object-cover" alt="hotel image" />
+          <img
+            src={`data:image/jpeg;base64,${image}`}
+            className="h-full w-full select-none object-cover"
+            alt="hotel image"
+          />
         </SwiperSlide>
       ))}
       <SwiperButtons />
