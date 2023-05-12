@@ -6,9 +6,7 @@ import { ChevronRightIcon } from '@heroicons/react/24/outline'
 import { Book, Room } from 'shared/types'
 import { parseQuery, serializeQuery } from 'shared/lib'
 import { bookRoom } from 'shared/api'
-import { Booking } from 'widgets'
-import { BookingAlert } from 'widgets/booking-alert'
-import { BookingForm } from 'widgets/booking-form'
+import { Booking, BookingAlert, BookingForm } from 'widgets'
 
 type Props = {
   data: {
