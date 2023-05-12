@@ -13,7 +13,7 @@ export const Mark = ({ hotel }: { hotel: Hotel }) => {
   const router = useRouter()
   const { city, filters, ...linkParams } = router.query
   const ymaps = useYMaps(['templateLayoutFactory'])
-  const coords = useCoords(hotel.adress)
+  const coords = useCoords(hotel.address)
   const layout = useMemo(() => {
     if (!ymaps) return ''
 
@@ -31,7 +31,7 @@ export const Mark = ({ hotel }: { hotel: Hotel }) => {
       <div class='mark-popup absolute hidden -translate-y-[105px] -translate-x-[116px]'>
       <div class='flex gap-2 w-72 h-20 p-2 bg-white rounded-md items-center'>
       <div class='w-14 h-14 rounded-md shrink-0'>
-      <img src=${hotel.images[0]} class='w-full h-full object-cover rounded-md' />
+      <img src="data:image/jpeg;base64,${hotel.images[0]}" class='w-full h-full object-cover rounded-md' />
       </div>
       <div class='flex flex-col gap-2 justify-between'>
       <p class='text-sm font-semibold line-clamp-1'>${hotel.name}</p>

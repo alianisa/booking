@@ -26,11 +26,11 @@ export const Hotel = ({ item, nights, variant }: Props) => {
           <div className="flex flex-col text-gray-700">
             <span className="flex items-center">
               <MapPinIcon className="mr-1 h-4 w-4" />
-              {item.adress}
+              {item.address}
             </span>
             <span className="flex items-center">
               <MapIcon className="mr-1 h-4 w-4" />
-              {item.distanceToCenter} км до центра
+              {item.distanceToCity} км до центра
             </span>
           </div>
           <div

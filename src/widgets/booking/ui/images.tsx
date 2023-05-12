@@ -36,7 +36,11 @@ export const Images = ({ images, setShowModalImages }: Props) => {
           }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={image} className="h-full w-full select-none object-cover" alt="hotel image" />
+          <img
+            src={`data:image/jpeg;base64,${image}`}
+            className="h-full w-full select-none object-cover"
+            alt="hotel image"
+          />
         </SwiperSlide>
       ))}
       <SwiperButtons />

@@ -27,7 +27,10 @@ export const ImageCarousel = ({ images }: Props) => {
     >
       {images.map((image, index) => (
         <SwiperSlide key={image + index}>
-          <div className="h-full bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url(${image})` }}></div>
+          <img
+            className="pointer-events-none h-full w-full select-none rounded-md object-cover"
+            src={`data:image/jpeg;base64,${image}`}
+          />
         </SwiperSlide>
       ))}
       <SwiperButtons />

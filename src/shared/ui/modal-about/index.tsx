@@ -1,28 +1,16 @@
 import React from 'react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import * as Dialog from '@radix-ui/react-dialog'
-
-type Item = {
-  name: string
-  size: number
-  beds: string
-  price: number
-  images: string[]
-  features: {
-    [key: string]: string[]
-  }
-  description: string
-}
+import { Room } from 'shared/types'
 
 type Props = {
-  item: Item
+  item: Room
   open: boolean
   onOpenChange: (open: boolean) => void
 }
 
 export const ModalAbout = ({ item, open, onOpenChange }: Props) => {
-  const features = Object.entries(item.features)
-
+  const facilities = Object.entries(item.facilities)
   return (
     <Dialog.Root open={open} onOpenChange={onOpenChange}>
       <Dialog.Portal>
@@ -39,7 +27,7 @@ export const ModalAbout = ({ item, open, onOpenChange }: Props) => {
                   </span>
                 </span>
                 <div className="mt-4 columns-1 gap-2 md:columns-3">
-                  {features.map(([title, features]) => (
+                  {facilities.map(([title, features]) => (
                     <div key={title} className="flex flex-col">
                       <p className="font-semibold">{title}</p>
                       <div className="mb-1 flex flex-col">

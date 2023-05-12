@@ -12,7 +12,6 @@ type Props = {
 }
 
 export default function SearchPage({ hotels, query }: Props) {
-  // console.log('hotels', hotels, query)
   const router = useRouter()
   const queryValues = parseQuery(query)
   const { city, checkInDate, checkOutDate } = queryValues

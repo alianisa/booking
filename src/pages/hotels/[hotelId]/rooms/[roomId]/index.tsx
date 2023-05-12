@@ -1,16 +1,16 @@
 import { forwardRef } from 'react'
+import { GetServerSidePropsContext } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 import { ChevronRightIcon } from '@heroicons/react/24/outline'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Controller, useForm } from 'react-hook-form'
 import InputMask from 'react-input-mask'
 import { z } from 'zod'
+import { Book, Room } from 'shared/types'
 import { parseQuery, serializeQuery } from 'shared/lib'
 import { Button, Input, Textarea } from 'shared/ui'
 import { Booking } from 'widgets'
-import { bookMock } from './mock'
 
 const defaultValues = {
   firstName: '',
@@ -27,9 +27,14 @@ const schema = z.object({
   phone: z.string().min(16, { message: 'Обязательное поле' }),
 })
 
-export default function BookingPage() {
-  const router = useRouter()
-  const query = router.query
+type Props = {
+  data: {
+    book: Book
+    room: Room
+  }
+  query: any
+}
+export default function BookingPage({ data, query }: Props) {
   const { hotelId } = query
   const { checkInDate, checkOutDate, persons } = parseQuery(query)
 
@@ -42,7 +47,7 @@ export default function BookingPage() {
     console.log('data', data)
   }
 
-  const title = `Бронирование ${bookMock.book.hotelName}`
+  const title = `Бронирование ${data.book.hotelName}`
 
   return (
     <>
@@ -58,7 +63,7 @@ export default function BookingPage() {
                 pathname: '/search',
                 query: {
                   ...serializeQuery({
-                    city: bookMock.book.city,
+                    city: data.book.city,
                     checkInDate: checkInDate,
                     checkOutDate: checkOutDate,
                     persons: persons,
@@ -84,18 +89,13 @@ export default function BookingPage() {
                 },
               }}
             >
-              <p className="text-lg">{bookMock.book.hotelName}</p>
+              <p className="text-lg">{data.book.hotelName}</p>
             </Link>
             <ChevronRightIcon className="h-5 w-5" />
           </div>
           <p className="cursor-default text-lg">Бронирование</p>
         </div>
-        <Booking
-          checkInDate={checkInDate}
-          checkOutDate={checkOutDate}
-          persons={persons}
-          item={{ ...bookMock.book, ...bookMock.room }}
-        />
+        <Booking checkInDate={checkInDate} checkOutDate={checkOutDate} persons={persons} data={data} />
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mt-5 flex w-full flex-col">
             <p className="mb-2 text-xl font-semibold">Контактные данные</p>
@@ -188,3 +188,10 @@ const PhoneInput = forwardRef(({ value, onChange, name, label, error }: PhoneInp
 })
 
 PhoneInput.displayName = 'PhoneInput'
+
+export async function getServerSideProps({ resolvedUrl, query }: GetServerSidePropsContext) {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API}${resolvedUrl}`)
+  const data = await res.json()
+
+  return { props: { data, query } }
+}

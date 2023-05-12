@@ -21,7 +21,6 @@ export const RoomSearch = ({ queryValues }: Props) => {
   const onSubmit = (data: any) => {
     const serializedQuery = serializeQuery(data)
     router.push({ query: { ...serializedQuery, hotelId: router.query.hotelId } })
-    console.log(data)
   }
 
   useEffect(() => {

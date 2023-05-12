@@ -1,19 +1,24 @@
+import { GetServerSidePropsContext } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 import { ChevronLeftIcon, MapIcon, MapPinIcon } from '@heroicons/react/24/outline'
+import { differenceInCalendarDays } from 'date-fns'
+import { Hotel, Room } from 'shared/types'
 import { parseQuery, serializeQuery, useCoords } from 'shared/lib'
 import { HotelImages, HotelMap, RoomList, RoomSearch } from 'widgets'
-import { hotelMock } from './mock'
 
-export default function HotelPage() {
-  const hotel = hotelMock.hotel
-  const rooms = hotelMock.rooms
-  const router = useRouter()
-  const query = router.query
+type Props = {
+  data: { hotel: Hotel; rooms: Room[] }
+  query: any
+}
+
+export default function HotelPage({ data, query }: Props) {
+  const hotel = data.hotel
+  const rooms = data.rooms
   const queryValues = parseQuery(query)
-  const coords = useCoords(hotel.adress)
-  const features = Object.entries(hotel.features)
+  const coords = useCoords(hotel.address)
+  const facilities = Object.entries(hotel.facilities)
+  const nights = differenceInCalendarDays(queryValues.checkOutDate, queryValues.checkInDate)
   return (
     <>
       <Head>
@@ -42,28 +47,26 @@ export default function HotelPage() {
           <div className="flex flex-col text-lg">
             <span className="flex items-center">
               <MapPinIcon className="mr-1 h-5 w-5" />
-              {hotel.adress}
+              {hotel.address}
             </span>
             <span className="flex items-center">
               <MapIcon className="mr-1 h-5 w-5" />
-              {hotel.distanceToCenter} км до центра
+              {hotel.distanceToCity} км до центра
             </span>
           </div>
         </div>
         <div className="mt-5 flex flex-col gap-2 md:h-[300px] md:flex-row">
           <HotelImages images={hotel.images} />
           <HotelMap coords={coords} height={300} className="h-[200px] md:h-[300px]" />
-          {/* <div className="h-[300px] animate-pulse rounded-md bg-gray-200 md:basis-1/4"></div> */}
         </div>
         <div className="mt-5">
           <p className="mb-2 text-xl font-semibold">Доступные номера</p>
           <RoomSearch queryValues={queryValues} />
-          <RoomList items={rooms as any} nights={2} loading={false} />
+          <RoomList items={rooms as any} nights={nights} />
         </div>
         <div className="mt-5">
           <p className="mb-2 text-xl font-semibold">Расположение</p>
           <HotelMap coords={coords} height={400} className="h-[400px]" />
-          {/* <div className="h-[400px] animate-pulse rounded-md bg-gray-200 md:basis-1/4"></div> */}
         </div>
         <div className="mt-5">
           <p className="mb-2 text-xl font-semibold">Про отель</p>
@@ -72,7 +75,7 @@ export default function HotelPage() {
         <div className="mt-5">
           <p className="mb-2 text-xl font-semibold">Удобства и услуги</p>
           <div className="columns-1 gap-2 md:columns-3 lg:columns-4">
-            {features.map(([title, features]) => (
+            {facilities.map(([title, features]) => (
               <div key={title} className="flex flex-col">
                 <p className="font-semibold">{title}</p>
                 <div className="mb-2 flex flex-col">
@@ -89,15 +92,22 @@ export default function HotelPage() {
           <div className="flex flex-col gap-1">
             <div className="flex gap-2">
               <p className="font-semibold">Время заеда:</p>
-              <p>с {hotel.checkInTime}</p>
+              <p>с {hotel?.checkInTime ?? 'fix'}</p>
             </div>
             <div className="flex gap-2">
               <p className="font-semibold">Время выезда:</p>
-              <p>до {hotel.checkOutTime}</p>
+              <p>до {hotel?.checkOutTime ?? 'fix'}</p>
             </div>
           </div>
         </div>
       </div>
     </>
   )
+}
+
+export async function getServerSideProps({ resolvedUrl, query }: GetServerSidePropsContext) {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API}${resolvedUrl}`)
+  const data = await res.json()
+
+  return { props: { data, query } }
 }

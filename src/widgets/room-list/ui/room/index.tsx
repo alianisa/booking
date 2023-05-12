@@ -1,25 +1,13 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { Room as RoomType } from 'shared/types'
 import { formatNoun } from 'shared/lib'
 import { Button, ModalAbout, ModalImages } from 'shared/ui'
 import { Images } from './images'
 
-type Room = {
-  id: number
-  name: string
-  size: number
-  beds: string
-  price: number
-  images: string[]
-  features: {
-    [key: string]: string[]
-  }
-  description: string
-}
-
 type Props = {
-  room: Room
+  room: RoomType
   nights: number
 }
 
@@ -28,7 +16,7 @@ export const Room = ({ room, nights }: Props) => {
   const { hotelId, ...linkParams } = router.query
   const [showModalImages, setShowModalImages] = useState(false)
   const [showModalAbout, setShowModalAbout] = useState(false)
-  const features = Object.values(room.features).flat()
+  const facilities = Object.values(room.facilities).flat()
 
   return (
     <>
@@ -45,7 +33,7 @@ export const Room = ({ room, nights }: Props) => {
             </span>
             <div className="mt-2 max-w-md basis-3/4 flex-wrap gap-x-1 self-start overflow-hidden md:flex">
               <div className="flex max-h-12 max-w-md basis-3/4 flex-wrap gap-x-1 self-start overflow-hidden">
-                {features.map((feature) => (
+                {facilities.map((feature) => (
                   <p key={feature}>
                     {feature}
                     <span>&nbsp;·</span>
