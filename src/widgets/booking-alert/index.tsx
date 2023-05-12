@@ -20,6 +20,7 @@ export const BookingAlert = ({ alert, hotelHref }: Props) => {
   const handleButton = () => {
     if (alert.status === 'error') {
       router.push(hotelHref)
+      return
     }
     router.push('/')
   }
