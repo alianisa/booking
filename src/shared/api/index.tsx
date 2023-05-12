@@ -45,3 +45,42 @@ export const fetchCoords = async (adress: string) => {
     console.log(error)
   }
 }
+
+type bookData = {
+  hotelId: string
+  roomId: string
+  bookData: {
+    checkInDate: string
+    checkOutDate: string
+    contacts: {
+      firstName: string
+      lastName: string
+      email: string
+      phone: string
+    }
+    persons: number
+    comment?: string
+  }
+}
+
+export const bookRoom = async (data: bookData) => {
+  const url = `/api/hotels/${data.hotelId}/rooms/${data.roomId}`
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    },
+    body: JSON.stringify(data.bookData),
+  }
+  try {
+    const response = await fetch(url, options)
+    const data = await response.text()
+    if (response.status === 422) {
+      return { status: 'error', message: data }
+    }
+    return { status: 'success', message: data }
+  } catch (error) {
+    console.log(error)
+  }
+}
