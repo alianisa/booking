@@ -1,7 +1,6 @@
 export * from './button'
 export * from './checkbox'
 export * from './date-range-picker'
-export * from './dialog'
 export * from './dropdown-menu'
 export * from './guests-select'
 export * from './icon-button'
