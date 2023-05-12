@@ -19,6 +19,14 @@ export const HotelList = ({ items, nights, className }: Props) => {
   const [variant, setVariant] = useState<'list' | 'grid'>('list')
   const [sort, setSort] = useState<'asc' | 'desc'>('asc')
   const sortedItems = items.sort((a, b) => (sort === 'asc' ? a.price - b.price : b.price - a.price))
+  const isEmpty = sortedItems.length <= 0
+  if (isEmpty)
+    return (
+      <div className="mt-20 flex w-full flex-col items-center gap-2 text-center">
+        <p className="text-lg font-bold">К сожалению, под ваши критерии не подходит ни один отель.</p>
+        <p>Попробуйте изменить параметры поиска.</p>
+      </div>
+    )
   return (
     <div className={cn('mt-5 flex w-full flex-col gap-5', className)}>
       <div className="flex justify-between">
